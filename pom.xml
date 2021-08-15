@@ -7,7 +7,6 @@
   <groupId>com.gnaoh</groupId>
   <artifactId>gideon</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
 
   <name>gideon</name>
   <!-- FIXME change it to the project's website -->
@@ -24,6 +23,11 @@
       <id>dv8tion</id>
       <name>m2-dv8tion</name>
       <url>https://m2.dv8tion.net/releases</url>
+    </repository>
+    <repository>
+      <id>jcenter</id>
+      <name>jcenter-bintray</name>
+      <url>https://jcenter.bintray.com</url>
     </repository>
   </repositories>
 
