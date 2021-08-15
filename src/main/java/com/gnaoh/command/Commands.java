@@ -13,4 +13,8 @@ public class Commands {
     public void info(String param) {
         event.getChannel().sendMessage(AnimeGif.smile).queue();
     }
+
+    public void hello(String param) {
+        event.getChannel().sendMessage("hi " + event.getAuthor().getAsMention() + " ❤️").queue();
+    }
 }

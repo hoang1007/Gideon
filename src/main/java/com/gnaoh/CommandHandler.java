@@ -2,7 +2,7 @@ package com.gnaoh;
 
 import java.lang.reflect.Method;
 import com.gnaoh.command.Commands;
-import com.gnaoh.utilities.Config;
+import com.gnaoh.utilities.Secret;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
@@ -15,7 +15,7 @@ public class CommandHandler extends ListenerAdapter {
         Method method = null;
         Commands commands = new Commands(event);
         
-        if (args[0].substring(0, 1).equalsIgnoreCase(Config.getProperty("prefix"))) {
+        if (args[0].substring(0, 1).equalsIgnoreCase(Secret.token)) {
             try {
                 String methodName = args[0].substring(1).toLowerCase();
                 method = commands.getClass().getMethod(methodName, String.class);
