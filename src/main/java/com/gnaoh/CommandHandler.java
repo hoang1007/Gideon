@@ -21,7 +21,7 @@ public class CommandHandler extends ListenerAdapter {
                 method = commands.getClass().getMethod(methodName, String.class);
             }
             catch (Exception e) {
-                event.getChannel().sendMessage("Can't invoke command!").queue();
+                event.getChannel().sendMessage("Command not found!").queue();
             }
 
             try {
