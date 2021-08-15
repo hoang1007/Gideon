@@ -15,7 +15,7 @@ public class CommandHandler extends ListenerAdapter {
         Method method = null;
         Commands commands = new Commands(event);
         
-        if (args[0].substring(0, 1).equalsIgnoreCase(Secret.token)) {
+        if (args[0].substring(0, 1).equalsIgnoreCase(Secret.prefix)) {
             try {
                 String methodName = args[0].substring(1).toLowerCase();
                 method = commands.getClass().getMethod(methodName, String.class);
