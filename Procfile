@@ -1,1 +1,1 @@
-worker: mvn clean heroku:deploy
+worker: mvn exec:java -Dexec.mainClass=com.gnaoh.App
