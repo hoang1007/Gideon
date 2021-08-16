@@ -1,3 +1,3 @@
-mvnw clean
-mvnw compile
-mvnw exec:java -Dexec.mainClass=com.gnaoh.App
+./mvnw clean
+./mvnw compile
+./mvnw exec:java -Dexec.mainClass=com.gnaoh.App
