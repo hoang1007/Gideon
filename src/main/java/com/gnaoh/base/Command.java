@@ -45,7 +45,7 @@ public abstract class Command extends ListenerAdapter {
                 String[] params = null;
 
                 try {
-                    params = Arrays.copyOfRange(args, 1, args.length - 1);
+                    params = Arrays.copyOfRange(args, 1, args.length);
                 } catch (Exception e) {
                 }
 
