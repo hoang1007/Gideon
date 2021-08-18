@@ -1,9 +1,12 @@
 com\gnaoh\utilities\numerics\Calculator.class
+com\gnaoh\command\real\TalkCommand.class
 com\gnaoh\App.class
 com\gnaoh\utilities\numerics\Bignum.class
-com\gnaoh\command\NumericCommand.class
-com\gnaoh\base\Command.class
-com\gnaoh\command\TalkCommand.class
+com\gnaoh\command\real\NumericCommand.class
+com\gnaoh\command\CommandState.class
+com\gnaoh\command\CommandManager.class
 com\gnaoh\utilities\numerics\Bignum$1.class
 com\gnaoh\utilities\Secret.class
+com\gnaoh\thread\ExceptionThread.class
 com\gnaoh\utilities\AnimeGif.class
+com\gnaoh\command\Command.class

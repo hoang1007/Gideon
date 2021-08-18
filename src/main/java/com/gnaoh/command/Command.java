@@ -39,7 +39,8 @@ public abstract class Command extends ListenerAdapter {
 
                 if (ExceptionThread.canThrowException())
                     event.getChannel().sendMessage("Command not found").queue();
-                return;
+                    
+                return ;
             }
 
             try {
@@ -61,21 +62,21 @@ public abstract class Command extends ListenerAdapter {
             } catch (Exception e) {
                 throw e;
             }
-        }
+        } else {
+            Class<?>[] paramTypes = new Class[paramCount];
 
-        Class<?>[] paramTypes = new Class[paramCount];
-
-        for (int i = 0; i < paramCount; i++) {
-            paramTypes[i] = String.class;
-        }
-
-        for (int i = paramCount; i >= 0; i--) {
-            try {
-                return this.getClass().getMethod(methodName, Arrays.copyOfRange(paramTypes, 0, i));
-            } catch (Exception e) {
+            for (int i = 0; i < paramCount; i++) {
+                paramTypes[i] = String.class;
             }
-        }
 
-        throw new Exception("Command not found");
+            for (int i = paramCount; i >= 0; i--) {
+                try {
+                    return this.getClass().getMethod(methodName, Arrays.copyOfRange(paramTypes, 0, i));
+                } catch (Exception e) {
+                }
+            }
+
+            throw new Exception("Command not found");
+        }
     }
 }

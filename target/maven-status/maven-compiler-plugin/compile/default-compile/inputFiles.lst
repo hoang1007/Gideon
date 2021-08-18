@@ -1,8 +1,11 @@
-C:\Users\hoang\Documents\CodeSpace\gideon\src\main\java\com\gnaoh\base\Command.java
+C:\Users\hoang\Documents\CodeSpace\gideon\src\main\java\com\gnaoh\command\real\TalkCommand.java
+C:\Users\hoang\Documents\CodeSpace\gideon\src\main\java\com\gnaoh\command\real\NumericCommand.java
 C:\Users\hoang\Documents\CodeSpace\gideon\src\main\java\com\gnaoh\utilities\AnimeGif.java
+C:\Users\hoang\Documents\CodeSpace\gideon\src\main\java\com\gnaoh\command\CommandManager.java
+C:\Users\hoang\Documents\CodeSpace\gideon\src\main\java\com\gnaoh\thread\ExceptionThread.java
 C:\Users\hoang\Documents\CodeSpace\gideon\src\main\java\com\gnaoh\App.java
 C:\Users\hoang\Documents\CodeSpace\gideon\src\main\java\com\gnaoh\utilities\numerics\Calculator.java
 C:\Users\hoang\Documents\CodeSpace\gideon\src\main\java\com\gnaoh\utilities\numerics\Bignum.java
 C:\Users\hoang\Documents\CodeSpace\gideon\src\main\java\com\gnaoh\utilities\Secret.java
-C:\Users\hoang\Documents\CodeSpace\gideon\src\main\java\com\gnaoh\command\NumericCommand.java
-C:\Users\hoang\Documents\CodeSpace\gideon\src\main\java\com\gnaoh\command\TalkCommand.java
+C:\Users\hoang\Documents\CodeSpace\gideon\src\main\java\com\gnaoh\command\CommandState.java
+C:\Users\hoang\Documents\CodeSpace\gideon\src\main\java\com\gnaoh\command\Command.java
