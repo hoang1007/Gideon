@@ -1,6 +1,6 @@
-package com.gnaoh.command;
+package com.gnaoh.command.real;
 
-import com.gnaoh.base.Command;
+import com.gnaoh.command.Command;
 import com.gnaoh.utilities.AnimeGif;
 
 public class TalkCommand extends Command {
@@ -11,7 +11,7 @@ public class TalkCommand extends Command {
     public void hello() {
         event.getChannel().sendMessage("hi " + event.getAuthor().getAsMention() + " ❤️").queue();
     }
-    
+
     public void say(String message) {
         event.getChannel().sendMessage(message).queue();
     }

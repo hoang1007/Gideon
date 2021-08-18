@@ -1,6 +1,6 @@
-package com.gnaoh.command;
+package com.gnaoh.command.real;
 
-import com.gnaoh.base.Command;
+import com.gnaoh.command.Command;
 import com.gnaoh.utilities.numerics.Bignum;
 import com.gnaoh.utilities.numerics.Calculator;
 

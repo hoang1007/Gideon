@@ -2,6 +2,7 @@ package com.gnaoh;
 
 import static org.junit.Assert.assertEquals;
 
+import com.gnaoh.command.CommandManager;
 import com.gnaoh.utilities.numerics.Bignum;
 import com.gnaoh.utilities.numerics.Calculator;
 import org.junit.Test;
@@ -19,10 +20,6 @@ public class CalculatorTest {
 
     @Test
     public void testShift() {
-        Bignum bignum = new Bignum(12345);
-        Bignum afterShift = bignum.shift(1);
-        Bignum expect = new Bignum(123450);
-        assertEquals(expect.length(), afterShift.length());
-        assertEquals(true, afterShift.equals(expect));
+        assertEquals(2, CommandManager.commandCount);
     }
 }
