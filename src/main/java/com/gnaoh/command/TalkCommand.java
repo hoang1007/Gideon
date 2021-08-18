@@ -11,4 +11,8 @@ public class TalkCommand extends Command {
     public void hello() {
         event.getChannel().sendMessage("hi " + event.getAuthor().getAsMention() + " ❤️").queue();
     }
+    
+    public void say(String message) {
+        event.getChannel().sendMessage(message).queue();
+    }
 }
