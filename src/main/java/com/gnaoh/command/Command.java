@@ -26,33 +26,28 @@ public abstract class Command extends ListenerAdapter {
         String message = event.getMessage().getContentRaw();
         String[] args = message.split(" ");
 
-        Method method = null;
-
         if (args[0].substring(0, 1).equalsIgnoreCase(Secret.prefix)) {
             try {
                 String methodName = args[0].substring(1).toLowerCase();
+                Method method = findMethod(methodName, args.length - 1);
 
-                method = findMethod(methodName, args.length - 1);
+                try {
+                    args = message.split(" ", method.getParameterCount() + 1);
+                    String[] params = Arrays.copyOfRange(args, 1, args.length);
+    
+                    method.invoke(this, (Object[]) params);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
                 ExceptionThread.addState(CommandState.FOUND);
             } catch (Exception e) {
                 ExceptionThread.addState(CommandState.NOTFOUND);
 
                 if (ExceptionThread.canThrowException())
                     event.getChannel().sendMessage("Command not found").queue();
-                    
-                return ;
             }
-
-            try {
-                args = message.split(" ", method.getParameterCount() + 1);
-                String[] params = Arrays.copyOfRange(args, 1, args.length);
-
-                method.invoke(this, (Object[]) params);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else
-            System.out.println(args[0] + " isn't a command");
+        }
     }
 
     private Method findMethod(String methodName, int paramCount) throws Exception {
