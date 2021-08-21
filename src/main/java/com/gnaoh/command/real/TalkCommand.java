@@ -23,4 +23,9 @@ public class TalkCommand extends Command {
     public void say(String message) {
         event.getChannel().sendMessage(message).queue();
     }
+
+    public void confess(String crush) {
+        MessageEmbed messageEmbed = new EmbedBuilder().setImage(AnimeGif.giveHeart).build();
+        event.getChannel().sendMessage("love " + crush + " ❤️").embed(messageEmbed).queue();
+    }
 }
