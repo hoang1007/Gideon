@@ -19,6 +19,6 @@ public class ManageCommand extends Command {
                     (m.getAuthor() == event.getAuthor() && m.getContentRaw().contains(Secret.prefix))
                 )
             );
-            event.getChannel().deleteMessages(messages).queue()
+            event.getChannel().deleteMessages(messages).queue();
     }
 }
