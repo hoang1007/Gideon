@@ -2,7 +2,6 @@ package com.gnaoh.command;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
-import com.gnaoh.thread.ExceptionThread;
 import com.gnaoh.utilities.Secret;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
@@ -13,7 +12,6 @@ public abstract class Command extends ListenerAdapter {
 
     @Override
     public void onReady(ReadyEvent event) {
-        CommandManager.commandCount++;
         System.out.println("Ready");
     }
 
@@ -39,13 +37,8 @@ public abstract class Command extends ListenerAdapter {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
-                ExceptionThread.addState(CommandState.FOUND);
             } catch (Exception e) {
-                ExceptionThread.addState(CommandState.NOTFOUND);
-
-                if (ExceptionThread.canThrowException())
-                    event.getChannel().sendMessage("Command not found").queue();
+                System.err.println(e.getMessage());
             }
         }
     }
