@@ -16,6 +16,7 @@ public class App
                     .setStatus(OnlineStatus.ONLINE)
                     .addEventListeners(new TalkCommand())
                     .addEventListeners(new NumericCommand())
+                    .addEventListeners(new ManageCommand())
                     .build();
         jda.awaitReady();
     }
