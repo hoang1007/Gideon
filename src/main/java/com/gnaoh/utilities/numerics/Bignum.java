@@ -22,7 +22,7 @@ public class Bignum implements Comparable<Bignum> {
     public static Bignum Parse(String numStr) {
         for (int i = 0; i < numStr.length(); i++)
             if (numStr.charAt(i) < '0' || numStr.charAt(i) > '9')
-                throw new IllegalArgumentException("Khong phai so. May dua bo may a");
+                throw new IllegalArgumentException("Deo phai so. May dua bo may a");
 
         return new Bignum(numStr);
     }
