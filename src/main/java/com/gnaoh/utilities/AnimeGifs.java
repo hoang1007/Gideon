@@ -13,6 +13,7 @@ public class AnimeGifs {
     public static Shine shine = instance.new Shine();
     public static Stunned stunned = instance.new Stunned();
     public static Smile smile = instance.new Smile();
+    public static Hard hard = instance.new Hard();
 
 
     private abstract class emotion {
@@ -58,5 +59,9 @@ public class AnimeGifs {
 
     private class Smile extends emotion {
         public final String one = "https://media.giphy.com/media/wkW0maGDN1eSc/giphy.gif";
+    }
+
+    public class Hard extends emotion {
+        public final String one = "https://64.media.tumblr.com/87bb0a3ec7ddf3b7b5d0d76645128c99/tumblr_pf876e7N3u1tvac0g_500.gifv";
     }
 }

@@ -35,8 +35,11 @@ public class NumericCommand extends Command {
         try {
             Bignum bn1 = Bignum.Parse(param1);
             long k = Long.parseLong(param2);
+            String resStr = Calculator.power(bn1, k).toString();
 
-            event.getChannel().sendMessage(Calculator.power(bn1, k).toString()).queue();
+            if (resStr.length() < 50) event.getChannel().sendMessage(resStr).queue();
+            else event.getChannel().sendMessage(resStr)
+                .embed(new EmbedBuilder().setImage(AnimeGifs.hard.one).build()).queue();
         } catch (IllegalArgumentException e) {
             event.getChannel().sendMessage(e.getMessage())
             .embed(new EmbedBuilder().setImage(AnimeGifs.angry.getRandom()).build()).queue();
