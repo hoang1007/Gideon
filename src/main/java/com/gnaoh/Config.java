@@ -1,6 +1,6 @@
-package com.gnaoh.util;
+package com.gnaoh;
 
-public class Secret {
+public class Config {
     public final static String token = System.getenv("TOKEN");
     public final static String prefix = System.getenv("PREFIX");
 }

@@ -19,6 +19,10 @@
 
   <repositories>
     <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </repository>
+    <repository>
       <id>dv8tion</id>
       <name>m2-dv8tion</name>
       <url>https://m2.dv8tion.net/releases</url>
@@ -26,6 +30,11 @@
   </repositories>
 
   <dependencies>
+    <dependency>
+      <groupId>com.github.freyacodes</groupId>
+      <artifactId>Lavalink-Client</artifactId>
+      <version>x.y.z</version>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

@@ -2,7 +2,7 @@ package com.gnaoh.command;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
-import com.gnaoh.util.Secret;
+import com.gnaoh.Config;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -24,7 +24,7 @@ public abstract class Command extends ListenerAdapter {
         String message = event.getMessage().getContentRaw();
         String[] args = message.split(" ");
 
-        if (args[0].substring(0, 1).equalsIgnoreCase(Secret.prefix)) {
+        if (args[0].substring(0, 1).equalsIgnoreCase(Config.prefix)) {
             try {
                 String methodName = args[0].substring(1).toLowerCase();
                 Method method = findMethod(methodName, args.length - 1);

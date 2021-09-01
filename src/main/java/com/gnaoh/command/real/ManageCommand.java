@@ -1,8 +1,9 @@
 package com.gnaoh.command.real;
 
 import java.util.List;
+
+import com.gnaoh.Config;
 import com.gnaoh.command.Command;
-import com.gnaoh.util.Secret;
 
 import net.dv8tion.jda.api.entities.Message;
 
@@ -16,7 +17,7 @@ public class ManageCommand extends Command {
 
             messages.removeIf(m -> !(
                     m.getAuthor() == event.getJDA().getSelfUser() || 
-                    (m.getAuthor() == event.getAuthor() && m.getContentRaw().contains(Secret.prefix))
+                    (m.getAuthor() == event.getAuthor() && m.getContentRaw().contains(Config.prefix))
                 )
             );
             event.getChannel().deleteMessages(messages).queue();
