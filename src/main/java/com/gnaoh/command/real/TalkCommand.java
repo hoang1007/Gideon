@@ -1,7 +1,7 @@
 package com.gnaoh.command.real;
 
 import com.gnaoh.command.Command;
-import com.gnaoh.utilities.AnimeGifs;
+import com.gnaoh.util.AnimeGifs;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 

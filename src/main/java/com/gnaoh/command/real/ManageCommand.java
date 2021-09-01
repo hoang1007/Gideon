@@ -2,7 +2,7 @@ package com.gnaoh.command.real;
 
 import java.util.List;
 import com.gnaoh.command.Command;
-import com.gnaoh.utilities.Secret;
+import com.gnaoh.util.Secret;
 
 import net.dv8tion.jda.api.entities.Message;
 

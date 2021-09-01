@@ -1,4 +1,4 @@
-package com.gnaoh.utilities.numerics;
+package com.gnaoh.util.numerics;
 
 public class Calculator {
     public static Bignum add(Bignum a, Bignum b) {

@@ -1,4 +1,4 @@
-package com.gnaoh.utilities;
+package com.gnaoh.util;
 
 public class Secret {
     public final static String token = System.getenv("TOKEN");

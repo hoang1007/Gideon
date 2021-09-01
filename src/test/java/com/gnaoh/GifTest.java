@@ -2,7 +2,7 @@ package com.gnaoh;
 
 import static org.junit.Assert.assertNotNull;
 
-import com.gnaoh.utilities.AnimeGifs;
+import com.gnaoh.util.AnimeGifs;
 
 import org.junit.Test;
 

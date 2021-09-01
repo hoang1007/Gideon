@@ -2,7 +2,7 @@ package com.gnaoh.command;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
-import com.gnaoh.utilities.Secret;
+import com.gnaoh.util.Secret;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;

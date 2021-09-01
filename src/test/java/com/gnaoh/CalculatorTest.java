@@ -2,8 +2,8 @@ package com.gnaoh;
 
 import static org.junit.Assert.assertEquals;
 
-import com.gnaoh.utilities.numerics.Bignum;
-import com.gnaoh.utilities.numerics.Calculator;
+import com.gnaoh.util.numerics.Bignum;
+import com.gnaoh.util.numerics.Calculator;
 import org.junit.Test;
 
 public class CalculatorTest {

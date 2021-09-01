@@ -1,9 +1,9 @@
 package com.gnaoh.command.real;
 
 import com.gnaoh.command.Command;
-import com.gnaoh.utilities.AnimeGifs;
-import com.gnaoh.utilities.numerics.Bignum;
-import com.gnaoh.utilities.numerics.Calculator;
+import com.gnaoh.util.AnimeGifs;
+import com.gnaoh.util.numerics.Bignum;
+import com.gnaoh.util.numerics.Calculator;
 import net.dv8tion.jda.api.EmbedBuilder;
 
 public class NumericCommand extends Command {

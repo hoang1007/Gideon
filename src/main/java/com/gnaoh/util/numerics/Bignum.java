@@ -1,4 +1,4 @@
-package com.gnaoh.utilities.numerics;
+package com.gnaoh.util.numerics;
 
 import java.util.Comparator;
 
