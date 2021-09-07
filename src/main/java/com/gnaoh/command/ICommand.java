@@ -1,5 +1,6 @@
 package com.gnaoh.command;
 
+import java.util.Arrays;
 import java.util.List;
 
 import net.dv8tion.jda.api.entities.GuildVoiceState;
@@ -13,8 +14,8 @@ public interface ICommand {
     void checkParameters(CommandContext context) throws Exception;
 
     default List<String> getAliases() {
-        return List.of();
-    }   
+        return Arrays.asList();
+    }
 
     default void checkVoiceChannel(CommandContext context) throws Exception {
         final GuildVoiceState selfVoiceState = context.getSelfMember().getVoiceState();
