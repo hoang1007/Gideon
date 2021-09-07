@@ -11,4 +11,8 @@ public class UrlUtils {
             return false;
         }
     }
+
+    public static String getThumbnailUrl(String indentifer) {
+        return String.format("http://i3.ytimg.com/vi/%s/maxresdefault.jpg", indentifer);
+    }
 }

@@ -12,7 +12,7 @@ public class HiCommand implements ICommand {
     @Override
     public void handle(CommandContext context) {
         context.reply("hello " + context.getEvent().getAuthor().getAsMention() + " ❤️", 
-            new EmbedBuilder().setImage(AnimeGifs.shy.getRandom()));
+            new EmbedBuilder().setImage(AnimeGifs.getRandom(AnimeGifs.shy)).build());
     }
 
     @Override

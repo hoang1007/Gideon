@@ -23,15 +23,13 @@ public interface ICommand {
 
     default void checkVoiceChannel(CommandContext context) throws Exception {
         final GuildVoiceState selfVoiceState = context.getSelfMember().getVoiceState();
-
-        if (!selfVoiceState.inVoiceChannel())
-            throw new Exception("Tao chưa vào voice channel. Đợi tí!");
-
         final GuildVoiceState memberVoiceState = context.getMember().getVoiceState();
 
-        if(!memberVoiceState.inVoiceChannel()) {
+        if(!memberVoiceState.inVoiceChannel())
             throw new Exception("Mày đã vào voice channel đâu đm. Vào đi!");
-        }
+        
+        if (!selfVoiceState.inVoiceChannel())
+            throw new Exception("Tao chưa vào voice channel. Đợi tí!");
 
         if (!memberVoiceState.getChannel().equals(selfVoiceState.getChannel())) {
             throw new Exception("Ôi bạn ơi, bạn phải join vào channel này mới chơi được " + selfVoiceState.getChannel().getName());
