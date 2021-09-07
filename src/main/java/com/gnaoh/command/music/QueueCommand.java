@@ -16,7 +16,7 @@ public class QueueCommand implements ICommand {
 
         String list = "";
         for (AudioTrack track : tracks) {
-            list += track.getIdentifier() + "\n";
+            list += track.getInfo().title + "\n";
         } 
 
         context.reply(list);
