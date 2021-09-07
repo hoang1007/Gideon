@@ -1,4 +1,4 @@
-package com.gnaoh.util;
+package com.gnaoh.util.gifs;
 
 import java.lang.reflect.Field;
 import java.util.Random;
