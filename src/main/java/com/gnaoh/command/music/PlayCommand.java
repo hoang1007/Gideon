@@ -1,5 +1,7 @@
 package com.gnaoh.command.music;
 
+import java.util.List;
+
 import com.gnaoh.Config;
 import com.gnaoh.command.CommandContext;
 import com.gnaoh.command.ICommand;
@@ -28,13 +30,6 @@ public class PlayCommand implements ICommand {
     }
 
     @Override
-    public
-    void checkParameters(CommandContext context) throws Exception {
-        if (context.getArgs().isEmpty())
-            throw new Exception(String.format("Correct usage is `%splay <youtube link> or <name of song>`", Config.prefix));
-    }
-
-    @Override
     public String getName() {
         return "play";
     }
@@ -42,6 +37,12 @@ public class PlayCommand implements ICommand {
     @Override
     public String getHelp() {
         return String.format("Plays a song\nUsage: `%splay <youtube link>`", Config.token);
+    }
+
+    @Override
+    public void checkParameters(List<String> args) throws Exception {
+        if (args.isEmpty())
+            throw new Exception(String.format("Correct usage is `%splay <youtube link> or <name of song>`", Config.prefix));   
     }
     
 }

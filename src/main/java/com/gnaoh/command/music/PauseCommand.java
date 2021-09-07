@@ -1,5 +1,7 @@
 package com.gnaoh.command.music;
 
+import java.util.List;
+
 import com.gnaoh.command.CommandContext;
 import com.gnaoh.command.ICommand;
 import com.gnaoh.util.lavaplayer.PlayerManager;
@@ -20,7 +22,7 @@ public class PauseCommand implements ICommand {
     void pauseCurrentTrack(AudioPlayer audioPlayer) throws Exception {
         if (audioPlayer.isPaused())
             throw new Exception("Audio player is already paused");
-        
+
         audioPlayer.setPaused(true);
     }
 
@@ -35,9 +37,9 @@ public class PauseCommand implements ICommand {
     }
 
     @Override
-    public void checkParameters(CommandContext context) throws Exception {
+    public void checkParameters(List<String> args) throws Exception {
         // TODO Auto-generated method stub
-        
+
     }
-    
+
 }

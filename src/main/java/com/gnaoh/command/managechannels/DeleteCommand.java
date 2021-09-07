@@ -39,7 +39,7 @@ public class DeleteCommand implements ICommand {
     }
 
     @Override
-    public void checkParameters(CommandContext context) {
+    public void checkParameters(List<String> args) throws Exception {
         // TODO Auto-generated method stub
         
     }

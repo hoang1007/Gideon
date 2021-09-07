@@ -10,8 +10,12 @@ public interface ICommand {
 
     String getName();
     String getHelp();
-
-    void checkParameters(CommandContext context) throws Exception;
+    
+    /**
+     * Check parameters required by the command
+     * @throws Exception Invalid parameters
+     */
+    void checkParameters(List<String> args) throws Exception;
 
     default List<String> getAliases() {
         return Arrays.asList();

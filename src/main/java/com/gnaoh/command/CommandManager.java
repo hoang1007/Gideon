@@ -3,32 +3,18 @@ package com.gnaoh.command;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Pattern;
 
-import com.gnaoh.command.music.*;
-import com.gnaoh.command.talk.*;
+import org.reflections.Reflections;
 
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 public class CommandManager {
+    public static final CommandManager INSTANCE = new CommandManager();
     private final List<ICommand> commands = new ArrayList<>();
 
-    public CommandManager() {
-        // Music commands
-        addCommand(new PlayCommand());
-        addCommand(new JoinCommand());
-        addCommand(new StopCommand());
-        addCommand(new ClearQueueCommand());
-        addCommand(new SkipCommand());
-        addCommand(new PauseCommand());
-        addCommand(new ResumeCommand());
-        // Numeric commands
-        
-        // Talk commands
-        addCommand(new HelloCommand());
-    }
-
-    private void addCommand(ICommand command) {
+    public void addCommand(ICommand command) {
         commands.add(command);
     }
 
@@ -48,10 +34,9 @@ public class CommandManager {
     }
 
     public void handle(GuildMessageReceivedEvent event, String prefix) {
-        String[] split = event.getMessage().getContentRaw()
-                        .replaceFirst("(?i)" + Pattern.quote(prefix), "")
-                        .split("\\s+");
-    
+        String[] split = event.getMessage().getContentRaw().replaceFirst("(?i)" + Pattern.quote(prefix), "")
+                .split("\\s+");
+
         try {
             String invoke = split[0];
             ICommand command = getCommand(invoke);
@@ -61,6 +46,19 @@ public class CommandManager {
             command.handle(new CommandContext(event, args));
         } catch (Exception e) {
             event.getChannel().sendMessage(e.getMessage()).queue();
+        }
+    }
+
+    public void retrieveCommands() {
+        Reflections reflections = new Reflections(ICommand.class);
+        Set<Class<? extends ICommand>> classes = reflections.getSubTypesOf(ICommand.class);
+
+        for (Class<? extends ICommand> iclass : classes) {
+            try {
+                addCommand(iclass.getConstructor().newInstance());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }

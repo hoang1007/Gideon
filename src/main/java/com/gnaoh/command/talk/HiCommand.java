@@ -5,28 +5,29 @@ import java.util.List;
 import com.gnaoh.command.CommandContext;
 import com.gnaoh.command.CommandManager;
 import com.gnaoh.command.ICommand;
+import com.gnaoh.util.gifs.AnimeGifs;
 
-public class HelloCommand implements ICommand {
+import net.dv8tion.jda.api.EmbedBuilder;
 
+public class HiCommand implements ICommand {
     @Override
     public void handle(CommandContext context) {
-        context.reply("hi " + context.getEvent().getAuthor().getAsMention() + " ❤️");
+        context.reply("hello " + context.getEvent().getAuthor().getAsMention() + " ❤️", 
+            new EmbedBuilder().setImage(AnimeGifs.shy.getRandom()));
     }
 
     @Override
     public String getName() {
-        return "hello";
+        return "hi";
     }
 
     @Override
     public String getHelp() {
-        return "Type hello and I'll hi back";
+        return "Hi me and I'll hello back";
     }
 
     @Override
     public void checkParameters(List<String> args) throws Exception {
         // TODO Auto-generated method stub
-        
     }
-    
 }
