@@ -14,6 +14,11 @@ public class PlayCommand implements ICommand {
     @Override
     public void handle(CommandContext context) {
         try {
+            //check if bot isn't in voice channel
+            //join channel
+            if (!context.getSelfMember().getVoiceState().inVoiceChannel())
+                new JoinCommand().handle(context);
+            
             checkVoiceChannel(context);
             play(context.getChannel(), String.join(" ", context.getArgs()));
         } catch (Exception e) {
