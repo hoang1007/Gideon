@@ -29,7 +29,7 @@ public interface ICommand {
             throw new Exception("Mày đã vào voice channel đâu đm. Vào đi!");
         
         if (!selfVoiceState.inVoiceChannel())
-            throw new Exception("Tao chưa vào voice channel. Đợi tí!");
+            throw new Exception("Tao chưa vào voice channel!");
 
         if (!memberVoiceState.getChannel().equals(selfVoiceState.getChannel())) {
             throw new Exception("Ôi bạn ơi, bạn phải join vào channel này mới chơi được " + selfVoiceState.getChannel().getName());
