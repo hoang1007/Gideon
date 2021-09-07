@@ -3,7 +3,6 @@ package com.gnaoh.command.talk;
 import java.util.List;
 
 import com.gnaoh.command.CommandContext;
-import com.gnaoh.command.CommandManager;
 import com.gnaoh.command.ICommand;
 import com.gnaoh.util.gifs.AnimeGifs;
 

@@ -31,7 +31,7 @@ public class TrackScheduler extends AudioEventAdapter {
 
     @Override
     public void onPlayerPause(AudioPlayer player) {
-
+        
     }
 
     @Override
