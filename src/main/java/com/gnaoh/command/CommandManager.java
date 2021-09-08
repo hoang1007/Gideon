@@ -2,14 +2,12 @@ package com.gnaoh.command;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import com.gnaoh.command.cmdinterface.ICommand;
-import com.gnaoh.util.classutils.ClassGetter;
-
-import org.clapper.util.classutil.ClassInfo;
+import com.gnaoh.util.classutils.ClassFinder;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
@@ -52,16 +50,12 @@ public class CommandManager {
 
     
     public void retrieveCommands() throws Exception {
-        Collection<ClassInfo> classes = new ClassGetter().getSubClasses(ICommand.class);
+        Set<Class<? extends ICommand>> classes = new ClassFinder<>(ICommand.class).getSubClasses();
 
-        System.out.println("Loaded classes");
-        for (ClassInfo classInfo : classes) {
-            System.out.println(classInfo.getClassName());
-
-            @SuppressWarnings("unchecked")
-            final Class<? extends ICommand> iclass = (Class<? extends ICommand>) Class.forName(classInfo.getClassName());
-
-            commands.add(iclass.getConstructor().newInstance());
+        System.out.println("Loading classes...");
+        for (Class<? extends ICommand> clazz : classes) {
+            commands.add(clazz.getConstructor().newInstance());
+            System.out.println(clazz.getName());
         }
     }
 
