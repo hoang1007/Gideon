@@ -4,13 +4,13 @@ import java.util.List;
 
 import com.gnaoh.Config;
 import com.gnaoh.command.CommandContext;
-import com.gnaoh.command.ICommand;
+import com.gnaoh.command.cmdinterface.IMusicCommand;
 import com.gnaoh.util.lavaplayer.PlayerManager;
 import com.gnaoh.util.web.UrlUtils;
 
 import net.dv8tion.jda.api.entities.TextChannel;
 
-public class PlayCommand implements ICommand {
+public class PlayCommand implements IMusicCommand{
     @Override
     public void handle(CommandContext context) {
         try {
@@ -26,7 +26,7 @@ public class PlayCommand implements ICommand {
             link = "ytsearch:" + link;
         }
 
-        PlayerManager.INSTANCE.loadAndPlay(channel, link);
+        PlayerManager.INSTANCE.loadAndPlay(channel, link, false);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class PlayCommand implements ICommand {
     @Override
     public void checkParameters(List<String> args) throws Exception {
         if (args.isEmpty())
-            throw new Exception(String.format("Correct usage is `%splay <youtube link> or <name of song>`", Config.prefix));   
+            throw new Exception(String.format("Correct usage is `%splay <youtube link> or <name of song>`", Config.prefix));  
     }
     
 }

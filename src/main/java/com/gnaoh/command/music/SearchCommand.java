@@ -7,30 +7,30 @@ import com.gnaoh.command.CommandContext;
 import com.gnaoh.command.cmdinterface.IMusicCommand;
 import com.gnaoh.util.lavaplayer.PlayerManager;
 
-public class ClearQueueCommand implements IMusicCommand {
+public class SearchCommand implements IMusicCommand {
 
     @Override
     public void handle(CommandContext context) {
-        PlayerManager.INSTANCE.getMusicManager(context.getGuild())
-        .scheduler.trackQueue.clear();
-    
-        context.reply("`The queue has been cleared`");
+        PlayerManager.INSTANCE.loadAndPlay(
+            context.getChannel(),
+            "ytsearch:" + String.join(" ", context.getArgs()) ,
+            true // get list set true
+        );
     }
 
     @Override
     public String getName() {
-        return "clear";
+        return "search";
     }
 
     @Override
     public String getDescription() {
-        return "clear all songs from the queue";
+        return "search youtube for a provided query";
     }
 
     @Override
     public void checkParameters(List<String> args) throws Exception {
-        if (!args.isEmpty())
-            throw new Exception(String.format("`Correct usage is [%sclear]`", Config.prefix));
+        if (args.isEmpty())
+            throw new Exception(String.format("`Correct usage is %ssearch <title>`", Config.prefix));
     }
-    
 }

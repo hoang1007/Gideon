@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import com.gnaoh.util.web.UrlUtils;
+import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.jagrosh.jdautilities.menu.OrderedMenu;
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
@@ -37,6 +38,7 @@ public class PlayerManager {
                     .allowTextInput(true)
                     .useNumbers()
                     .useCancelButton(true)
+                    .setEventWaiter(new EventWaiter())
                     .setTimeout(1, TimeUnit.MINUTES);
     }
 
@@ -50,7 +52,7 @@ public class PlayerManager {
         });
     }
 
-    public void loadAndPlay(TextChannel channel, String trackURL) {
+    public void loadAndPlay(TextChannel channel, String trackURL, boolean isGetList) {
         final GuildMusicManager musicManager = getMusicManager(channel.getGuild());
 
         audioPlayerManager.loadItemOrdered(channel.getGuild(), trackURL, new AudioLoadResultHandler() {
@@ -68,16 +70,19 @@ public class PlayerManager {
 
             @Override
             public void playlistLoaded(AudioPlaylist playlist) {
-                AudioTrack track = playlist.getSelectedTrack() == null ? 
-                                playlist.getTracks().get(0) : playlist.getSelectedTrack();
+                if (isGetList)
+                    loadMenuPlaylist(playlist);
+                else {
+                    AudioTrack track = playlist.getTracks().get(0);
 
-                musicManager.scheduler.queue(track);
+                    musicManager.scheduler.queue(track);
 
-                EmbedBuilder embedBuilder = new EmbedBuilder()
-                        .setTitle(String.format("Adding to queue: `%s`", track.getInfo().title))
-                        .setAuthor(track.getInfo().author).setImage(UrlUtils.getThumbnailUrl(track.getIdentifier()));
+                    EmbedBuilder embedBuilder = new EmbedBuilder()
+                    .setTitle(String.format("Adding to queue: `%s`", track.getInfo().title))
+                    .setAuthor(track.getInfo().author).setImage(UrlUtils.getThumbnailUrl(track.getIdentifier()));
 
-                channel.sendMessage(embedBuilder.build()).queue();
+                    channel.sendMessage(embedBuilder.build()).queue();
+                }
             }
 
             @Override
@@ -86,34 +91,37 @@ public class PlayerManager {
 
                 EmbedBuilder embedBuilder = new EmbedBuilder()
                         .setTitle(String.format("Adding to queue: `%s`", track.getInfo().title))
-                        .setAuthor(track.getInfo().author).setImage(UrlUtils.getThumbnailUrl(track.getIdentifier()));
+                        .setAuthor(track.getInfo().author)
+                        .setImage(UrlUtils.getThumbnailUrl(track.getIdentifier()));
 
                 channel.sendMessage(embedBuilder.build()).queue();
             }
 
             void loadMenuPlaylist(AudioPlaylist playlist) {
-                // menuBuilder.setColor(Color.BLUE)
-                //             .setText(String.format("Search result for: `%s`", playlist.getName()))
-                //             .setSelection((msg, i) -> {
-                //                 AudioTrack track = playlist.getTracks().get(i - 1);
-                                
-                //                 musicManager.scheduler.queue(track);
+                menuBuilder.setColor(Color.BLUE)
+                        .setText(String.format("`%s`", playlist.getName()))
+                        .setChoices(new String[0])
+                        .setSelection((msg, i) -> {
+                            AudioTrack track = playlist.getTracks().get(i - 1);
+                            musicManager.scheduler.queue(track);
+                            System.out.println("Track has been scheduled");
 
-                //                 EmbedBuilder embedBuilder = new EmbedBuilder()
-                //                 .setTitle(String.format("Adding to queue: `%s`", track.getInfo().title))
-                //                 .setAuthor(track.getInfo().author).setImage(UrlUtils.getThumbnailUrl(track.getIdentifier()));
+                            EmbedBuilder embedBuilder = new EmbedBuilder()
+                                    .setTitle(String.format("Adding to queue: `%s`", track.getInfo().title))
+                                    .setAuthor(track.getInfo().author)
+                                    .setImage(UrlUtils.getThumbnailUrl(track.getIdentifier()));
 
-                //                 channel.sendMessage(embedBuilder.build());
-                //             })
-                //             .setCancel(msg -> {});
-                
-                // final int trackPerPage = 4;
-                // for (int i = 0; i < trackPerPage && i < playlist.getTracks().size(); i++) {
-                //     AudioTrack track = playlist.getTracks().get(i);
-                //     menuBuilder.addChoice(String.format("`%s` `[%d]`", track.getInfo().title, track.getDuration()));
-                // }
+                            channel.sendMessage(embedBuilder.build()).queue();
+                        })
+                        .setCancel(msg -> {});
 
-                // menuBuilder.build().display(channel);
+                final int trackPerPage = 4;
+                for (int i = 0; i < trackPerPage && i < playlist.getTracks().size(); i++) {
+                    AudioTrack track = playlist.getTracks().get(i);
+                    menuBuilder.addChoice(String.format("`%s` `[%d]`", track.getInfo().title, track.getDuration()));
+                }
+
+                menuBuilder.build().display(channel);
             }
         });
     }

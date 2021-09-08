@@ -2,8 +2,9 @@ package com.gnaoh.command.music;
 
 import java.util.List;
 
+import com.gnaoh.Config;
 import com.gnaoh.command.CommandContext;
-import com.gnaoh.command.ICommand;
+import com.gnaoh.command.cmdinterface.ICommand;
 
 import net.dv8tion.jda.api.entities.GuildVoiceState;
 import net.dv8tion.jda.api.entities.VoiceChannel;
@@ -20,8 +21,7 @@ public class JoinCommand implements ICommand {
         if (memberVoiceState.inVoiceChannel()) {
             audioManager.openAudioConnection(memberChannel);
             context.reply("Connecting to `\uD83D\uDD0A %s`", memberChannel.getName());
-        }
-        else 
+        } else
             context.reply("Bạn vào trước đi rồi mình vào");
     }
 
@@ -37,7 +37,7 @@ public class JoinCommand implements ICommand {
 
     @Override
     public void checkParameters(List<String> args) throws Exception {
-        // TODO Auto-generated method stub
-
+        if (!args.isEmpty())
+            throw new Exception(String.format("`Correct usage is [%sjoin]`", Config.prefix));
     }
 }

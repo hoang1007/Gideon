@@ -4,24 +4,20 @@ import java.util.List;
 
 import com.gnaoh.Config;
 import com.gnaoh.command.CommandContext;
-import com.gnaoh.command.ICommand;
+import com.gnaoh.command.cmdinterface.ICommand;
 import com.gnaoh.util.numerics.Bignum;
 import com.gnaoh.util.numerics.Calculator;
 
 public class MultiCommand implements ICommand {
 
     @Override
-    public void handle(CommandContext context) {
-        try {
-            List<String> args = context.getArgs();
-            checkParameters(args);
-            Bignum a = Bignum.Parse(args.get(0));
-            Bignum b = Bignum.Parse(args.get(1));
+    public void handle(CommandContext context) throws Exception {
+        List<String> args = context.getArgs();
+        
+        Bignum a = Bignum.Parse(args.get(0));
+        Bignum b = Bignum.Parse(args.get(1));
 
-            context.reply(Calculator.multiply(a, b).toString());
-        } catch (Exception e) {
-            context.reply(e.getMessage());
-        }
+        context.reply(Calculator.multiply(a, b).toString());
     }
 
     @Override

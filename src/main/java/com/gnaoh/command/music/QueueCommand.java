@@ -3,12 +3,13 @@ package com.gnaoh.command.music;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 
+import com.gnaoh.Config;
 import com.gnaoh.command.CommandContext;
-import com.gnaoh.command.ICommand;
+import com.gnaoh.command.cmdinterface.IMusicCommand;
 import com.gnaoh.util.lavaplayer.PlayerManager;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 
-public class QueueCommand implements ICommand {
+public class QueueCommand implements IMusicCommand {
 
     @Override
     public void handle(CommandContext context) {
@@ -34,6 +35,7 @@ public class QueueCommand implements ICommand {
 
     @Override
     public void checkParameters(List<String> args) throws Exception {
-        // TODO Auto-generated method stub
+        if (!args.isEmpty())
+            throw new Exception(String.format("`Correct usage is [%squeue]`", Config.prefix));
     }
 }

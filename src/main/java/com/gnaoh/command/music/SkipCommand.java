@@ -2,13 +2,14 @@ package com.gnaoh.command.music;
 
 import java.util.List;
 
+import com.gnaoh.Config;
 import com.gnaoh.command.CommandContext;
-import com.gnaoh.command.ICommand;
+import com.gnaoh.command.cmdinterface.IMusicCommand;
 import com.gnaoh.util.lavaplayer.GuildMusicManager;
 import com.gnaoh.util.lavaplayer.PlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 
-public class SkipCommand implements ICommand {
+public class SkipCommand implements IMusicCommand {
 
     @Override
     public void handle(CommandContext context) {
@@ -44,7 +45,7 @@ public class SkipCommand implements ICommand {
 
     @Override
     public void checkParameters(List<String> args) throws Exception {
-        // TODO Auto-generated method stub
-        
+        if (!args.isEmpty())
+            throw new Exception(String.format("Correct usage is [%sskip]", Config.prefix));
     }
 }

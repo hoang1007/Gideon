@@ -1,26 +1,10 @@
-package com.gnaoh.command;
+package com.gnaoh.command.cmdinterface;
 
-import java.util.Arrays;
-import java.util.List;
+import com.gnaoh.command.CommandContext;
 
 import net.dv8tion.jda.api.entities.GuildVoiceState;
 
-public interface ICommand {
-    void handle(CommandContext context);
-
-    String getName();
-    String getDescription();
-    
-    /**
-     * Check parameters required by the command
-     * @throws Exception Invalid parameters
-     */
-    void checkParameters(List<String> args) throws Exception;
-
-    default List<String> getAliases() {
-        return Arrays.asList();
-    }
-
+public interface IMusicCommand extends ICommand {
     default void checkVoiceChannel(CommandContext context) throws Exception {
         final GuildVoiceState selfVoiceState = context.getSelfMember().getVoiceState();
         final GuildVoiceState memberVoiceState = context.getMember().getVoiceState();
@@ -33,6 +17,16 @@ public interface ICommand {
 
         if (!memberVoiceState.getChannel().equals(selfVoiceState.getChannel())) {
             throw new Exception("Ôi bạn ơi, bạn phải join vào channel này mới chơi được " + selfVoiceState.getChannel().getName());
+        }
+    }
+
+    @Override 
+    default void invoke(CommandContext context) {
+        try {
+            checkParameters(context.getArgs());
+            checkVoiceChannel(context);
+        } catch (Exception e) {
+            context.reply(e.getMessage());
         }
     }
 }

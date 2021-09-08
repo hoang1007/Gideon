@@ -2,21 +2,17 @@ package com.gnaoh.command.music;
 
 import java.util.List;
 
+import com.gnaoh.Config;
 import com.gnaoh.command.CommandContext;
-import com.gnaoh.command.ICommand;
+import com.gnaoh.command.cmdinterface.IMusicCommand;
 import com.gnaoh.util.lavaplayer.PlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 
-public class ResumeCommand implements ICommand {
+public class ResumeCommand implements IMusicCommand {
 
     @Override
-    public void handle(CommandContext context) {
-        try {
-            checkVoiceChannel(context);
-            resumeTrack(PlayerManager.INSTANCE.getMusicManager(context.getGuild()).audioPlayer);
-        } catch (Exception e) {
-            context.reply(e.getMessage());
-        }
+    public void handle(CommandContext context) throws Exception {
+        resumeTrack(PlayerManager.INSTANCE.getMusicManager(context.getGuild()).audioPlayer);
     }
 
     void resumeTrack(AudioPlayer audioPlayer) throws Exception {
@@ -39,8 +35,8 @@ public class ResumeCommand implements ICommand {
 
     @Override
     public void checkParameters(List<String> args) throws Exception {
-        // TODO Auto-generated method stub
-        
+        if (!args.isEmpty())
+            throw new Exception(String.format("`Correct usage is [%sresume]`", Config.token));
     }
     
 }

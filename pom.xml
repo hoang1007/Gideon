@@ -23,6 +23,11 @@
       <name>m2-dv8tion</name>
       <url>https://m2.dv8tion.net/releases</url>
     </repository>
+    <repository>
+      <id>central</id>
+      <name>bintray</name>
+      <url>http://jcenter.bintray.com</url>
+    </repository>
   </repositories>
 
   <dependencies>
@@ -33,8 +38,6 @@
       <artifactId>reflections</artifactId>
       <version>0.9.12</version>
     </dependency>
-
-
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -50,6 +53,13 @@
       <groupId>com.sedmelluq</groupId>
       <artifactId>lavaplayer</artifactId>
       <version>1.3.77</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.jagrosh/jda-utilities -->
+    <dependency>
+      <groupId>com.jagrosh</groupId>
+      <artifactId>jda-utilities</artifactId>
+      <version>3.0.5</version>
+      <type>pom</type>
     </dependency>
   </dependencies>
 
