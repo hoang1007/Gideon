@@ -9,7 +9,7 @@ public interface ICommand {
     void handle(CommandContext context);
 
     String getName();
-    String getHelp();
+    String getDescription();
     
     /**
      * Check parameters required by the command

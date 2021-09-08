@@ -18,8 +18,8 @@ public class HelloCommand implements ICommand {
     }
 
     @Override
-    public String getHelp() {
-        return "Type hello and I'll hi back";
+    public String getDescription() {
+        return "type hello and I'll hi back";
     }
 
     @Override

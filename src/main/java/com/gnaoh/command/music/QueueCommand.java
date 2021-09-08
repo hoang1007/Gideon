@@ -28,14 +28,12 @@ public class QueueCommand implements ICommand {
     }
 
     @Override
-    public String getHelp() {
+    public String getDescription() {
         return "get a list of tracks";
     }
 
     @Override
     public void checkParameters(List<String> args) throws Exception {
         // TODO Auto-generated method stub
-        
     }
-    
 }

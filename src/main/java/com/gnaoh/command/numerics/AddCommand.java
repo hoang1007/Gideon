@@ -30,7 +30,7 @@ public class AddCommand implements ICommand {
     }
 
     @Override
-    public String getHelp() {
+    public String getDescription() {
         return "calculate sum of two big numbers";
     }
 

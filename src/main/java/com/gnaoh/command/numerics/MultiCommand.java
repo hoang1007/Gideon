@@ -30,7 +30,7 @@ public class MultiCommand implements ICommand {
     }
 
     @Override
-    public String getHelp() {
+    public String getDescription() {
         return "multiply two big numbers";
     }
 

@@ -33,7 +33,7 @@ public class ResumeCommand implements ICommand {
     }
 
     @Override
-    public String getHelp() {
+    public String getDescription() {
         return "resume the current track";
     }
 

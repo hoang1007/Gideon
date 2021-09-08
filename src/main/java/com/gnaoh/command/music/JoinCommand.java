@@ -31,8 +31,8 @@ public class JoinCommand implements ICommand {
     }
 
     @Override
-    public String getHelp() {
-        return "Help me join your voice channel";
+    public String getDescription() {
+        return "help me join your voice channel";
     }
 
     @Override

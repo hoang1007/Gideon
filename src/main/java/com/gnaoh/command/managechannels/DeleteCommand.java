@@ -34,8 +34,8 @@ public class DeleteCommand implements ICommand {
     }
 
     @Override
-    public String getHelp() {
-        return "Clear all command that you were called";
+    public String getDescription() {
+        return "clear all command that you were called";
     }
 
     @Override

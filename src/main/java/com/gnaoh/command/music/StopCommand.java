@@ -26,8 +26,8 @@ public class StopCommand implements ICommand {
     }
 
     @Override
-    public String getHelp() {
-        return "Stop the current song";
+    public String getDescription() {
+        return "stop the current song";
     }
 
     @Override

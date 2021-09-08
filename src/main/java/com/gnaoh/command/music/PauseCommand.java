@@ -32,8 +32,8 @@ public class PauseCommand implements ICommand {
     }
 
     @Override
-    public String getHelp() {
-        return "Pauses the current track";
+    public String getDescription() {
+        return "pauses the current track";
     }
 
     @Override

@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import org.reflections.Reflections;
 
+import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 public class CommandManager {
@@ -59,6 +60,12 @@ public class CommandManager {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void upsertCommands(JDA jda) {
+        for (ICommand command : commands) {
+            jda.upsertCommand(command.getName(), command.getDescription()).queue();
         }
     }
 }

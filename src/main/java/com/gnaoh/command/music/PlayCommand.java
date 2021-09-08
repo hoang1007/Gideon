@@ -35,8 +35,8 @@ public class PlayCommand implements ICommand {
     }
 
     @Override
-    public String getHelp() {
-        return String.format("Plays a song\nUsage: `%splay <youtube link>`", Config.token);
+    public String getDescription() {
+        return "play a song";
     }
 
     @Override

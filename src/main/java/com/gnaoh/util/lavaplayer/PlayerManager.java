@@ -43,7 +43,7 @@ public class PlayerManager {
     public void loadAndPlay(TextChannel channel, String trackURL) {
         final GuildMusicManager musicManager = getMusicManager(channel.getGuild());
 
-        audioPlayerManager.loadItem(trackURL, new AudioLoadResultHandler() {
+        audioPlayerManager.loadItemOrdered(channel.getGuild(), trackURL, new AudioLoadResultHandler() {
             @Override
             public void loadFailed(FriendlyException arg0) {
                 // TODO Auto-generated method stub
@@ -58,24 +58,28 @@ public class PlayerManager {
 
             @Override
             public void playlistLoaded(AudioPlaylist playlist) {
-                final AudioTrack track = playlist.getTracks().get(0);
+                AudioTrack track = playlist.getSelectedTrack() == null ? 
+                                playlist.getTracks().get(0) : playlist.getSelectedTrack();
+
+                musicManager.scheduler.queue(track);
+
                 EmbedBuilder embedBuilder = new EmbedBuilder()
-                            .setTitle(String.format("Adding to queue: `%s`", track.getInfo().title))
-                            .setAuthor(track.getInfo().author)
-                            .setImage(UrlUtils.getThumbnailUrl(track.getIdentifier()));
+                        .setTitle(String.format("Adding to queue: `%s`", track.getInfo().title))
+                        .setAuthor(track.getInfo().author).setImage(UrlUtils.getThumbnailUrl(track.getIdentifier()));
 
                 channel.sendMessage(embedBuilder.build()).queue();
-                
-                musicManager.scheduler.queue(track);
             }
 
             @Override
             public void trackLoaded(AudioTrack track) {
                 musicManager.scheduler.queue(track);
-                channel.sendMessage("Adding to queue: ").append(track.getInfo().title).append(" by ")
-                        .append(track.getInfo().author).queue();
-            }
 
+                EmbedBuilder embedBuilder = new EmbedBuilder()
+                        .setTitle(String.format("Adding to queue: `%s`", track.getInfo().title))
+                        .setAuthor(track.getInfo().author).setImage(UrlUtils.getThumbnailUrl(track.getIdentifier()));
+
+                channel.sendMessage(embedBuilder.build()).queue();
+            }
         });
     }
 }

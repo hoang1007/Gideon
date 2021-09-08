@@ -21,8 +21,8 @@ public class HiCommand implements ICommand {
     }
 
     @Override
-    public String getHelp() {
-        return "Hi me and I'll hello back";
+    public String getDescription() {
+        return "hi me and I'll hello back";
     }
 
     @Override

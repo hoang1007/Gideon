@@ -22,8 +22,8 @@ public class ClearQueueCommand implements ICommand {
     }
 
     @Override
-    public String getHelp() {
-        return "Clear all songs from the queue";
+    public String getDescription() {
+        return "clear all songs from the queue";
     }
 
     @Override

@@ -30,7 +30,7 @@ public class PowerCommand implements ICommand {
     }
 
     @Override
-    public String getHelp() {
+    public String getDescription() {
         return "Calculate power of two big numbers";
     }
 
