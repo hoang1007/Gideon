@@ -12,11 +12,9 @@ import org.clapper.util.classutil.NotClassFilter;
 import org.clapper.util.classutil.SubclassClassFilter;
 
 public class ClassGetter {
-    public static ClassGetter INSTANCE = new ClassGetter();
-
     ClassFinder finder = null;
 
-    ClassGetter() {
+    public ClassGetter() {
         finder = new ClassFinder();
         finder.addClassPath();
     }

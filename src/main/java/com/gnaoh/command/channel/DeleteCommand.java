@@ -1,29 +1,27 @@
-package com.gnaoh.command.managechannels;
+package com.gnaoh.command.channel;
 
 import java.util.List;
 
 import com.gnaoh.Config;
 import com.gnaoh.command.CommandContext;
 import com.gnaoh.command.cmdinterface.ICommand;
+import com.gnaoh.ienum.UserType;
 
 import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 public class DeleteCommand implements ICommand {
     public int limitMessageCount = 50;
 
     @Override
-    public void handle(CommandContext context) {
-        GuildMessageReceivedEvent event = context.getEvent();
-
-        List<Message> messages = event.getChannel().getHistory().retrievePast(limitMessageCount).complete();
+    public void handle(CommandContext context) throws Exception {
+        List<Message> messages = context.getChannel().getHistory().retrievePast(limitMessageCount).complete();
 
         messages.removeIf(m -> 
-                !(m.getAuthor() == event.getJDA().getSelfUser()
-                || (m.getAuthor() == event.getAuthor() && m.getContentRaw().contains(Config.prefix)))
+                !(m.getAuthor() == context.getJDA().getSelfUser()
+                || (m.getAuthor() == context.getUser(UserType.AUTHOR) && m.getContentRaw().contains(Config.prefix)))
         );
         
-        event.getChannel().deleteMessages(messages).queue();
+        context.getChannel().deleteMessages(messages).queue();
     }
 
     @Override

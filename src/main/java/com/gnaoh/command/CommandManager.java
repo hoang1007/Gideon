@@ -52,9 +52,12 @@ public class CommandManager {
 
     
     public void retrieveCommands() throws Exception {
-        Collection<ClassInfo> classes = ClassGetter.INSTANCE.getSubClasses(ICommand.class);
+        Collection<ClassInfo> classes = new ClassGetter().getSubClasses(ICommand.class);
 
+        System.out.println("Loaded classes");
         for (ClassInfo classInfo : classes) {
+            System.out.println(classInfo.getClassName());
+
             @SuppressWarnings("unchecked")
             final Class<? extends ICommand> iclass = (Class<? extends ICommand>) Class.forName(classInfo.getClassName());
 
