@@ -4,8 +4,12 @@ import java.util.List;
 
 import javax.annotation.Nonnull;
 
+import com.gnaoh.ienum.MemberType;
+import com.gnaoh.ienum.UserType;
+
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.GuildVoiceState;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageEmbed;
@@ -20,6 +24,10 @@ public class CommandContext {
     public CommandContext(GuildMessageReceivedEvent event, List<String> args) {
         this.event = event;
         this.args = args;
+    }
+
+    public JDA getJDA() {
+        return event.getJDA();
     }
 
     public Guild getGuild() {
@@ -42,31 +50,37 @@ public class CommandContext {
         return event.getMessage();
     }
 
-    public User getAuthor() {
-        return event.getAuthor();
+    public User getUser(UserType userType) {
+        switch (userType) {
+            case AUTHOR:
+                return event.getAuthor();
+            case BOT:
+                return event.getJDA().getSelfUser();
+            default:
+                return null;
+        }
     }
 
-    public Member getMember() {
-        return event.getMember();
+    public Member getMember(MemberType memberType) {
+        switch (memberType) {
+            case BOT:
+                return getGuild().getSelfMember();
+            case NORMAL:
+                return event.getMember();
+            default:
+                return null;
+        }
     }
 
-    public JDA getJDA() {
-        return event.getJDA();
+    public GuildVoiceState getVoiceState(MemberType memberType) {
+        return getMember(memberType).getVoiceState();
     }
 
-    public User getSelfUser() {
-        return getJDA().getSelfUser();
-    }
-
-    public Member getSelfMember() {
-        return getGuild().getSelfMember();
-    }
-
-    public void reply(String message) {
+    public void reply(@Nonnull String message) {
         getChannel().sendMessage(message).queue();
     }
 
-    public void reply(String message, MessageEmbed msgEmbed) {
+    public void reply(@Nonnull String message, @Nonnull MessageEmbed msgEmbed) {
         getChannel().sendMessage(message).embed(msgEmbed).queue();
     }
 

@@ -2,13 +2,14 @@ package com.gnaoh.command.cmdinterface;
 
 import com.gnaoh.command.CommandContext;
 import com.gnaoh.exception.music.*;
+import com.gnaoh.ienum.MemberType;
 
 import net.dv8tion.jda.api.entities.GuildVoiceState;
 
 public interface IMusicCommand extends ICommand {
     default void checkVoiceChannel(CommandContext context) throws Exception {
-        final GuildVoiceState selfVoiceState = context.getSelfMember().getVoiceState();
-        final GuildVoiceState memberVoiceState = context.getMember().getVoiceState();
+        final GuildVoiceState selfVoiceState = context.getVoiceState(MemberType.BOT);
+        final GuildVoiceState memberVoiceState = context.getVoiceState(MemberType.NORMAL);
 
         if(!memberVoiceState.inVoiceChannel())
             throw new NoMemberInVoiceChannel();

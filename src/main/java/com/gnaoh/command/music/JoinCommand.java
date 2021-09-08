@@ -6,23 +6,24 @@ import com.gnaoh.Config;
 import com.gnaoh.command.CommandContext;
 import com.gnaoh.command.cmdinterface.ICommand;
 import com.gnaoh.exception.music.NoMemberInVoiceChannel;
+import com.gnaoh.ienum.MemberType;
 
 import net.dv8tion.jda.api.entities.GuildVoiceState;
 import net.dv8tion.jda.api.entities.VoiceChannel;
 import net.dv8tion.jda.api.managers.AudioManager;
 
 public class JoinCommand implements ICommand {
-
     @Override
     public void handle(CommandContext context) throws Exception {
         final AudioManager audioManager = context.getGuild().getAudioManager();
-        final GuildVoiceState memberVoiceState = context.getMember().getVoiceState();
+        final GuildVoiceState memberVoiceState = context.getVoiceState(MemberType.NORMAL);
         final VoiceChannel memberChannel = memberVoiceState.getChannel();
 
         if (memberVoiceState.inVoiceChannel()) {
             audioManager.openAudioConnection(memberChannel);
 
             context.reply("Connecting to `\uD83D\uDD0A %s`", memberChannel.getName());
+            
         } else
             throw new NoMemberInVoiceChannel();
     }

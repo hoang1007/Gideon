@@ -5,6 +5,7 @@ import java.util.List;
 import com.gnaoh.Config;
 import com.gnaoh.command.CommandContext;
 import com.gnaoh.command.cmdinterface.IMusicCommand;
+import com.gnaoh.ienum.UserType;
 import com.gnaoh.util.lavaplayer.GuildMusicManager;
 import com.gnaoh.util.lavaplayer.PlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
@@ -18,7 +19,7 @@ public class SkipCommand implements IMusicCommand {
             GuildMusicManager musicManager = PlayerManager.INSTANCE.getMusicManager(context.getGuild());
             
             skipTrack(musicManager);
-            context.reply("Track is skipped by " + context.getAuthor().getAsMention());
+            context.reply("Track is skipped by " + context.getUser(UserType.AUTHOR).getAsMention());
         } catch (Exception e) {
             context.reply(e.getMessage());
         }
