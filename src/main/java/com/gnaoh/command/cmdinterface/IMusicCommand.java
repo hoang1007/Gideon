@@ -1,6 +1,7 @@
 package com.gnaoh.command.cmdinterface;
 
 import com.gnaoh.command.CommandContext;
+import com.gnaoh.exception.music.*;
 
 import net.dv8tion.jda.api.entities.GuildVoiceState;
 
@@ -10,13 +11,13 @@ public interface IMusicCommand extends ICommand {
         final GuildVoiceState memberVoiceState = context.getMember().getVoiceState();
 
         if(!memberVoiceState.inVoiceChannel())
-            throw new Exception("Mày đã vào voice channel đâu đm. Vào đi!");
+            throw new NoMemberInVoiceChannel();
         
         if (!selfVoiceState.inVoiceChannel())
-            throw new Exception("Tao chưa vào voice channel!");
+            throw new NotSelfInVoiceChannel();
 
         if (!memberVoiceState.getChannel().equals(selfVoiceState.getChannel())) {
-            throw new Exception("Ôi bạn ơi, bạn phải join vào channel này mới chơi được " + selfVoiceState.getChannel().getName());
+            throw new NotSameVoiceChannel();
         }
     }
 
@@ -25,7 +26,10 @@ public interface IMusicCommand extends ICommand {
         try {
             checkParameters(context.getArgs());
             checkVoiceChannel(context);
-        } catch (Exception e) {
+
+            handle(context);
+        }
+        catch (Exception e) {
             context.reply(e.getMessage());
         }
     }

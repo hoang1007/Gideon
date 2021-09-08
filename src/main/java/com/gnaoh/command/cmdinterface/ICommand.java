@@ -24,6 +24,7 @@ public interface ICommand {
     default void invoke(CommandContext context) {
         try {
             checkParameters(context.getArgs());
+            
             handle(context);
         } catch (Exception e) {
             context.reply(e.getMessage());
