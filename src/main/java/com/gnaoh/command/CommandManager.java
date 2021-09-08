@@ -2,13 +2,14 @@ package com.gnaoh.command;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 import java.util.regex.Pattern;
 
 import com.gnaoh.command.cmdinterface.ICommand;
+import com.gnaoh.util.classutils.ClassGetter;
 
-import org.reflections.Reflections;
+import org.clapper.util.classutil.ClassInfo;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
@@ -16,10 +17,6 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 public class CommandManager {
     public static final CommandManager INSTANCE = new CommandManager();
     private final List<ICommand> commands = new ArrayList<>();
-    
-    public void addCommand(ICommand command) {
-        commands.add(command);
-    }
 
     public List<ICommand> getCommands() {
         return commands;
@@ -48,21 +45,20 @@ public class CommandManager {
 
             command.invoke(new CommandContext(event, args));
         } catch (Exception e) {
+            e.printStackTrace();
             event.getChannel().sendMessage(e.getMessage()).queue();
         }
     }
 
     
-    public void retrieveCommands() {
-        Reflections reflections = new Reflections(ICommand.class);
-        Set<Class<? extends ICommand>> classes = reflections.getSubTypesOf(ICommand.class);
+    public void retrieveCommands() throws Exception {
+        Collection<ClassInfo> classes = ClassGetter.INSTANCE.getSubClasses(ICommand.class);
 
-        for (Class<? extends ICommand> iclass : classes) {
-            try {
-                addCommand(iclass.getConstructor().newInstance());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        for (ClassInfo classInfo : classes) {
+            @SuppressWarnings("unchecked")
+            final Class<? extends ICommand> iclass = (Class<? extends ICommand>) Class.forName(classInfo.getClassName());
+
+            commands.add(iclass.getConstructor().newInstance());
         }
     }
 
