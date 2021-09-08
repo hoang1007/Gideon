@@ -21,8 +21,12 @@ public class EventListener extends ListenerAdapter {
 
     @Override
     public void onReady(ReadyEvent event) {
-        CommandManager.INSTANCE.retrieveCommands();
+        try {
+            CommandManager.INSTANCE.retrieveCommands();
 
-        CommandManager.INSTANCE.upsertCommands(event.getJDA());
+            CommandManager.INSTANCE.upsertCommands(event.getJDA());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

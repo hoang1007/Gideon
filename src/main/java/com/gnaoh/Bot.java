@@ -10,7 +10,7 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
-public class App 
+public class Bot 
 {
     public static void main( String[] args ) throws LoginException, InterruptedException
     {

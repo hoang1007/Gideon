@@ -1,10 +1,11 @@
+com\gnaoh\command\cmdinterface\ICommand.class
 com\gnaoh\command\CommandContext.class
+com\gnaoh\command\cmdinterface\IMusicCommand.class
 com\gnaoh\command\talk\HelloCommand.class
 com\gnaoh\command\managechannels\DeleteCommand.class
 com\gnaoh\command\music\PauseCommand.class
 com\gnaoh\command\music\ClearQueueCommand.class
 com\gnaoh\command\numerics\PowerCommand.class
-com\gnaoh\command\ICommand.class
 com\gnaoh\util\lavaplayer\PlayerManager.class
 com\gnaoh\command\music\QueueCommand.class
 com\gnaoh\util\queue\Queue.class
@@ -17,6 +18,7 @@ com\gnaoh\util\lavaplayer\GuildMusicManager.class
 com\gnaoh\command\music\SkipCommand.class
 com\gnaoh\util\gifs\AnimeGifs.class
 com\gnaoh\util\lavaplayer\TrackScheduler.class
+com\gnaoh\exception\music\NotSameVoiceChannel.class
 com\gnaoh\util\web\UrlUtils.class
 com\gnaoh\Config.class
 com\gnaoh\util\numerics\Bignum$1.class
@@ -25,8 +27,11 @@ com\gnaoh\command\music\ResumeCommand.class
 com\gnaoh\command\music\PlayCommand.class
 com\gnaoh\command\talk\HiCommand.class
 com\gnaoh\App.class
+com\gnaoh\exception\music\NotSelfInVoiceChannel.class
 com\gnaoh\command\numerics\MultiCommand.class
+com\gnaoh\exception\music\NoMemberInVoiceChannel.class
 com\gnaoh\util\lavaplayer\AudioPlayerSendHandler.class
 com\gnaoh\util\lavaplayer\PlayerManager$1.class
+com\gnaoh\command\music\SearchCommand.class
 com\gnaoh\command\music\StopCommand.class
 com\gnaoh\command\CommandManager.class
