@@ -7,6 +7,7 @@ import com.gnaoh.Config;
 import com.gnaoh.command.CommandContext;
 import com.gnaoh.command.cmdinterface.IMusicCommand;
 import com.gnaoh.util.lavaplayer.PlayerManager;
+import com.gnaoh.util.other.Formatter;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 
 public class QueueCommand implements IMusicCommand {
@@ -17,10 +18,10 @@ public class QueueCommand implements IMusicCommand {
 
         String list = "";
         for (AudioTrack track : tracks) {
-            list += track.getInfo().title + "\n";
+            list += String.format("`%s - %s`\n", track.getInfo().title, Formatter.formatTime(track.getDuration()));
         } 
 
-        context.reply(list);
+        context.reply(list.isEmpty() ? "`No tracks available in queue!`" : list);
     }
 
     @Override
