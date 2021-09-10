@@ -3,6 +3,7 @@ package com.gnaoh.util.lavaplayer;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.gnaoh.util.other.Formatter;
 import com.gnaoh.util.web.UrlUtils;
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
@@ -63,7 +64,7 @@ public class PlayerManager {
                 musicManager.scheduler.queue(track);
 
                 EmbedBuilder embedBuilder = new EmbedBuilder()
-                        .setTitle(String.format("Adding to queue: `%s`", track.getInfo().title))
+                        .setTitle(String.format("Adding to queue: `%s - %s`", track.getInfo().title, Formatter.formatTime(track.getDuration())))
                         .setAuthor(track.getInfo().author).setImage(UrlUtils.getThumbnailUrl(track.getIdentifier()));
 
                 channel.sendMessage(embedBuilder.build()).queue();
