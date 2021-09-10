@@ -29,7 +29,7 @@ public class ConfessCommand implements ICommand{
 
     @Override
     public void checkParameters(List<String> args) throws Exception {
-        if (!args.isEmpty())
+        if (args.isEmpty())
             throw new Exception(String.format("`Correct usage is [%sconfess <someone>]`", Config.prefix));
     }
     
