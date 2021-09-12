@@ -1,4 +1,4 @@
-package com.gnaoh.lib;
+package com.gnaoh.assets;
 
 public class MemeSounds {
     public static final String aothatday = "https://www.youtube.com/watch?v=QyANMO1Qmz8",

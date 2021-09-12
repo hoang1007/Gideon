@@ -14,8 +14,8 @@ public class EventListener extends ListenerAdapter {
         if (event.getAuthor().isBot() || event.isWebhookMessage())
             return ;
         
-        if (event.getMessage().getContentRaw().startsWith(Config.prefix)) {
-            CommandManager.INSTANCE.handle(event, Config.prefix);
+        if (event.getMessage().getContentRaw().startsWith(Config.INSTANCE.get("PREFIX"))) {
+            CommandManager.INSTANCE.handle(event, Config.INSTANCE.get("PREFIX"));
         }
     }
 

@@ -1,7 +1,13 @@
 package com.gnaoh;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 public class Config {
-    public final static String token = System.getenv("TOKEN");
-    public final static String prefix = System.getenv("PREFIX");
-    public final static String packageName = "com.gnaoh";
+    public static Config INSTANCE = new Config();
+    
+    private Dotenv dotenv = Dotenv.load();
+    
+    public String get(String env) {
+        return dotenv.get(env);
+    }
 }

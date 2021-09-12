@@ -37,6 +37,6 @@ public class QueueCommand implements IMusicCommand {
     @Override
     public void checkParameters(List<String> args) throws Exception {
         if (!args.isEmpty())
-            throw new Exception(String.format("`Correct usage is [%squeue]`", Config.prefix));
+            throw new Exception(String.format("`Correct usage is [%squeue]`", Config.INSTANCE.get("PREFIX")));
     }
 }

@@ -2,9 +2,9 @@ package com.gnaoh.command.talk;
 
 import java.util.List;
 
+import com.gnaoh.assets.AnimeGifs;
 import com.gnaoh.command.CommandContext;
 import com.gnaoh.command.cmdinterface.ICommand;
-import com.gnaoh.util.gifs.AnimeGifs;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 

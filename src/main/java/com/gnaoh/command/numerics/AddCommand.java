@@ -34,6 +34,6 @@ public class AddCommand implements ICommand {
         final int paramCount = 2;
 
         if (args.size() != paramCount)
-            throw new Exception(String.format("Correct usage is `%sadd <bignum1> <bignum2>`", Config.prefix));
+            throw new Exception(String.format("Correct usage is `%sadd <bignum1> <bignum2>`", Config.INSTANCE.get("PREFIX")));
     }
 }

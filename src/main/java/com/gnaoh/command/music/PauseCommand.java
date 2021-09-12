@@ -19,7 +19,7 @@ public class PauseCommand implements IMusicCommand {
         if (audioPlayer.isPaused())
             throw new Exception("Audio player is already paused");
 
-        audioPlayer.setPaused(true);
+        audioPlayer.setPaused(true); 
     }
 
     @Override
@@ -35,7 +35,7 @@ public class PauseCommand implements IMusicCommand {
     @Override
     public void checkParameters(List<String> args) throws Exception {
         if (!args.isEmpty())
-            throw new Exception(String.format("`Correct usage is [%spause]`", Config.prefix));
+            throw new Exception(String.format("`Correct usage is [%spause]`", Config.INSTANCE.get("PREFIX")));
     }
 
 }

@@ -3,9 +3,9 @@ package com.gnaoh.command.talk;
 import java.util.List;
 
 import com.gnaoh.Config;
+import com.gnaoh.assets.AnimeGifs;
 import com.gnaoh.command.CommandContext;
 import com.gnaoh.command.cmdinterface.ICommand;
-import com.gnaoh.util.gifs.AnimeGifs;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 
@@ -30,7 +30,7 @@ public class ConfessCommand implements ICommand{
     @Override
     public void checkParameters(List<String> args) throws Exception {
         if (args.isEmpty())
-            throw new Exception(String.format("`Correct usage is [%sconfess <someone>]`", Config.prefix));
+            throw new Exception(String.format("`Correct usage is [%sconfess <someone>]`", Config.INSTANCE.get("PREFIX")));
     }
     
 }

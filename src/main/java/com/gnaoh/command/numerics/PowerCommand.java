@@ -32,7 +32,7 @@ public class PowerCommand implements ICommand {
     public void checkParameters(List<String> args) throws Exception {
         final int paramCount = 2;
         if (args.size() != paramCount) {
-            throw new Exception(String.format("Correct usage is `%spow <bignum1> <long integer>`", Config.prefix));
+            throw new Exception(String.format("Correct usage is `%spow <bignum1> <long integer>`", Config.INSTANCE.get("PREFIX")));
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.gnaoh.util.gifs;
+package com.gnaoh.assets;
 
 import java.util.Random;
 
