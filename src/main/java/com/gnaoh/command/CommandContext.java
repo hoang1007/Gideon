@@ -87,4 +87,8 @@ public class CommandContext {
     public void reply(@Nonnull String format, @Nonnull Object...args) {
         getChannel().sendMessageFormat(format, args).queue();
     }
+
+    public void reply(@Nonnull MessageEmbed msgEmbed) {
+        getChannel().sendMessage(msgEmbed).queue();
+    }
 }
