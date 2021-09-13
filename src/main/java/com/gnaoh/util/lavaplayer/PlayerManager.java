@@ -35,46 +35,4 @@ public class PlayerManager {
     public AudioPlayerManager getAudioPlayerManager() {
         return this.audioPlayerManager;
     }
-
-    // public void loadAndPlay(TextChannel channel, String trackURL, boolean isGetList) {
-    //     final GuildMusicManager musicManager = getMusicManager(channel.getGuild());
-
-    //     audioPlayerManager.loadItemOrdered(channel.getGuild(), trackURL, new AudioLoadResultHandler() {
-    //         @Override
-    //         public void loadFailed(FriendlyException arg0) {
-    //             // TODO Auto-generated method stub
-
-    //         }
-
-    //         @Override
-    //         public void noMatches() {
-    //             // TODO Auto-generated method stub
-
-    //         }
-
-    //         @Override
-    //         public void playlistLoaded(AudioPlaylist playlist) {
-    //             AudioTrack track = playlist.getTracks().get(0);
-
-    //             musicManager.scheduler.queue(track);
-
-    //             EmbedBuilder embedBuilder = new EmbedBuilder()
-    //                     .setTitle(String.format("Adding to queue: `%s - %s`", track.getInfo().title, Formatter.formatTime(track.getDuration())))
-    //                     .setAuthor(track.getInfo().author).setImage(UrlUtils.getThumbnailUrl(track.getIdentifier()));
-
-    //             channel.sendMessage(embedBuilder.build()).queue();
-    //         }
-
-    //         @Override
-    //         public void trackLoaded(AudioTrack track) {
-    //             musicManager.scheduler.queue(track);
-
-    //             EmbedBuilder embedBuilder = new EmbedBuilder()
-    //                     .setTitle(String.format("Adding to queue: `%s`", track.getInfo().title))
-    //                     .setAuthor(track.getInfo().author).setImage(UrlUtils.getThumbnailUrl(track.getIdentifier()));
-
-    //             channel.sendMessage(embedBuilder.build()).queue();
-    //         }
-    //     });
-    // }
 }
