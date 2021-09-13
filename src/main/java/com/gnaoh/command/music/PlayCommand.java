@@ -89,7 +89,7 @@ public class PlayCommand implements IMusicCommand {
     public void checkParameters(List<String> args) throws Exception {
         if (args.isEmpty())
             throw new Exception(String.format("Correct usage is `%splay <youtube link> or <name of song>`",
-                    Config.INSTANCE.get("PREFIX")));
+                    Config.get("PREFIX")));
     }
 
     @Override

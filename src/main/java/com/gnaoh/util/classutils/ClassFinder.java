@@ -11,7 +11,7 @@ public class ClassFinder<T> {
     Class<T> clazz;
 
     public ClassFinder(Class<T> clazz) {
-        reflections = new Reflections(Config.INSTANCE.get("PACKAGE_NAME"));
+        reflections = new Reflections(Config.get("PACKAGE_NAME"));
         this.clazz = clazz;
     }
 

@@ -3,11 +3,13 @@ package com.gnaoh;
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class Config {
-    public static Config INSTANCE = new Config();
+    private static Dotenv dotenv = Dotenv.load();
     
-    private Dotenv dotenv = Dotenv.load();
-    
-    public String get(String env) {
-        return dotenv.get(env);
+    public static String get(String env) {
+        try {
+            return System.getenv(env);
+        } catch (Exception e) {
+            return dotenv.get(env);
+        }
     }
 }

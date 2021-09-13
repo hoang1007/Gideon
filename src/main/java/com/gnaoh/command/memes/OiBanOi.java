@@ -28,7 +28,7 @@ public class OiBanOi implements IMemeCommand {
     @Override
     public void checkParameters(List<String> args) throws Exception {
         if (!args.isEmpty()) {
-            throw new InvalidArgumentException(String.format("`Correct usage is [%soibanoi]`", Config.INSTANCE.get("PREFIX")));
+            throw new InvalidArgumentException(String.format("`Correct usage is [%soibanoi]`", Config.get("PREFIX")));
         }
     }
     
