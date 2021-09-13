@@ -16,7 +16,7 @@ public class Bot
     {
         // Initialize gideon
         JDA jda = JDABuilder.createDefault(
-            Config.get("TOKEN"),
+            Config.token,
             GatewayIntent.GUILD_MESSAGES,
             GatewayIntent.GUILD_VOICE_STATES
         )

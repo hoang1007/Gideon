@@ -34,6 +34,6 @@ public class MultiCommand implements ICommand {
     public void checkParameters(List<String> args) throws Exception {
         final int paramCount = 2;
         if (args.size() != paramCount)
-            throw new Exception(String.format("Correct usage is `%smul <bignum1> <bignum2>`", Config.get("PREFIX")));
+            throw new Exception(String.format("Correct usage is `%smul <bignum1> <bignum2>`", Config.prefix));
     }
 }

@@ -18,7 +18,7 @@ public class DeleteCommand implements ICommand {
 
         messages.removeIf(m -> 
                 !(m.getAuthor() == context.getJDA().getSelfUser()
-                || (m.getAuthor() == context.getUser(UserType.AUTHOR) && m.getContentRaw().contains(Config.get("PREFIX"))))
+                || (m.getAuthor() == context.getUser(UserType.AUTHOR) && m.getContentRaw().contains(Config.prefix)))
         );
         
         context.getChannel().deleteMessages(messages).queue();
@@ -37,6 +37,6 @@ public class DeleteCommand implements ICommand {
     @Override
     public void checkParameters(List<String> args) throws Exception {
         if (!args.isEmpty())
-            throw new Exception(String.format("`Correct usage is %sdelete`", Config.get("PREFIX")));
+            throw new Exception(String.format("`Correct usage is %sdelete`", Config.prefix));
     }
 }

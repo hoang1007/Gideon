@@ -47,6 +47,6 @@ public class SkipCommand implements IMusicCommand {
     @Override
     public void checkParameters(List<String> args) throws Exception {
         if (!args.isEmpty())
-            throw new Exception(String.format("Correct usage is [%sskip]", Config.get("PREFIX")));
+            throw new Exception(String.format("Correct usage is [%sskip]", Config.prefix));
     }
 }

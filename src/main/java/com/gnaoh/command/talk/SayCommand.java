@@ -1,33 +1,32 @@
-package com.gnaoh.command.memes;
+package com.gnaoh.command.talk;
 
 import java.util.List;
 
 import com.gnaoh.Config;
-import com.gnaoh.assets.MemeSounds;
 import com.gnaoh.command.CommandContext;
-import com.gnaoh.command.cmdinterface.IMemeCommand;
+import com.gnaoh.command.cmdinterface.ICommand;
 import com.gnaoh.exception.arguments.InvalidArgumentException;
 
-public class AoThatDay implements IMemeCommand {
+public class SayCommand implements ICommand {
 
     @Override
     public void handle(CommandContext context) throws Exception {
-        play(context, MemeSounds.aothatday);
+        context.reply(String.join(" ", context.getArgs()));
     }
 
     @Override
     public String getName() {
-        return "aothatday";
+        return "say";
     }
 
     @Override
     public String getDescription() {
-        return "summon kha bank";
+        return "let me say something";
     }
 
     @Override
     public void checkParameters(List<String> args) throws Exception {
-        if (!args.isEmpty())
-            throw new InvalidArgumentException(String.format("`Correct usage is [%saothatday]`", Config.prefix));
-    } 
+        if (args.isEmpty())
+            throw new InvalidArgumentException(String.format("`Correct usage is [%say <something>]`", Config.prefix));
+    }
 }

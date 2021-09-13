@@ -41,6 +41,6 @@ public class JoinCommand implements ICommand {
     @Override
     public void checkParameters(List<String> args) throws Exception {
         if (!args.isEmpty())
-            throw new Exception(String.format("`Correct usage is [%sjoin]`", Config.get("PREFIX")));
+            throw new Exception(String.format("`Correct usage is [%sjoin]`", Config.prefix));
     }
 }
