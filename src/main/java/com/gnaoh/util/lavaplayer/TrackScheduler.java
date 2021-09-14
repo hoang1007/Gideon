@@ -1,8 +1,6 @@
 package com.gnaoh.util.lavaplayer;
 
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
-
+import com.gnaoh.util.structures.Queue;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.event.AudioEventAdapter;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
@@ -10,22 +8,22 @@ import com.sedmelluq.discord.lavaplayer.track.AudioTrackEndReason;
 
 public class TrackScheduler extends AudioEventAdapter {
     public final AudioPlayer player;
-    public final BlockingQueue<AudioTrack> trackQueue;
+    public final Queue<AudioTrack> trackQueue;
 
     public TrackScheduler(AudioPlayer player) {
         this.player = player;
-        trackQueue = new LinkedBlockingQueue<>();
+        trackQueue = new Queue<>();
     }
 
     public void nextTrack() {
         boolean noInterrupt = false;
-        this.player.startTrack(trackQueue.poll(), noInterrupt);
+        this.player.startTrack(trackQueue.pop(), noInterrupt);
     }
 
     public void queue(AudioTrack track) {
         boolean noInterrupt = true;
         if (!player.startTrack(track, noInterrupt)) {
-            trackQueue.offer(track);
+            trackQueue.push(track);
         }
     }
 

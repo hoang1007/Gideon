@@ -1,7 +1,6 @@
 package com.gnaoh.command.music;
 
 import java.util.List;
-import java.util.concurrent.BlockingQueue;
 
 import com.gnaoh.Config;
 import com.gnaoh.command.CommandContext;
@@ -14,10 +13,8 @@ public class QueueCommand implements IMusicCommand {
 
     @Override
     public void handle(CommandContext context) {
-        BlockingQueue<AudioTrack> tracks = PlayerManager.INSTANCE.getMusicManager(context.getGuild()).scheduler.trackQueue;
-
         String list = "";
-        for (AudioTrack track : tracks) {
+        for (AudioTrack track : PlayerManager.INSTANCE.getMusicManager(context.getGuild()).scheduler.trackQueue) {
             list += String.format("`%s - %s`\n", track.getInfo().title, Formatter.formatTime(track.getDuration()));
         } 
 
