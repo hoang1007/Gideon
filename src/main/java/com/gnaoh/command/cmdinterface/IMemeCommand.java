@@ -1,8 +1,8 @@
 package com.gnaoh.command.cmdinterface;
 
 import com.gnaoh.command.CommandContext;
-import com.gnaoh.exception.music.NoMemberInVoiceChannel;
-import com.gnaoh.exception.music.NotSameVoiceChannel;
+import com.gnaoh.exception.NoMemberInVoiceChannel;
+import com.gnaoh.exception.NotSameVoiceChannel;
 import com.gnaoh.ienum.MemberType;
 import com.gnaoh.util.lavaplayer.GuildMusicManager;
 import com.gnaoh.util.lavaplayer.PlayerManager;

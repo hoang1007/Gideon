@@ -5,7 +5,7 @@ import java.util.List;
 import com.gnaoh.Config;
 import com.gnaoh.command.CommandContext;
 import com.gnaoh.command.cmdinterface.ICommand;
-import com.gnaoh.exception.music.NoMemberInVoiceChannel;
+import com.gnaoh.exception.NoMemberInVoiceChannel;
 import com.gnaoh.ienum.MemberType;
 
 import net.dv8tion.jda.api.entities.GuildVoiceState;

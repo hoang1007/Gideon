@@ -6,7 +6,7 @@ import com.gnaoh.Config;
 import com.gnaoh.assets.MemeSounds;
 import com.gnaoh.command.CommandContext;
 import com.gnaoh.command.cmdinterface.IMemeCommand;
-import com.gnaoh.exception.arguments.InvalidArgumentException;
+import com.gnaoh.exception.InvalidArgumentException;
 
 public class OiBanOi implements IMemeCommand {
 

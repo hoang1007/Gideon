@@ -5,7 +5,7 @@ import java.util.List;
 import com.gnaoh.Config;
 import com.gnaoh.command.CommandContext;
 import com.gnaoh.command.cmdinterface.ICommand;
-import com.gnaoh.exception.arguments.InvalidArgumentException;
+import com.gnaoh.exception.InvalidArgumentException;
 
 public class SayCommand implements ICommand {
 

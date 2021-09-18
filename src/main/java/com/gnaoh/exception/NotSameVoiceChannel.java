@@ -1,4 +1,4 @@
-package com.gnaoh.exception.music;
+package com.gnaoh.exception;
 
 public class NotSameVoiceChannel extends Exception {
     public NotSameVoiceChannel() {

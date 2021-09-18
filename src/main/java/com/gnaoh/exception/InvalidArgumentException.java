@@ -1,4 +1,4 @@
-package com.gnaoh.exception.arguments;
+package com.gnaoh.exception;
 
 public class InvalidArgumentException extends Exception {
     public InvalidArgumentException(String message) {
