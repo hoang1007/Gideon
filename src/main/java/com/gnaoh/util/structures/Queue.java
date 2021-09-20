@@ -11,6 +11,10 @@ public class Queue<T> extends LinkedList<T> {
         super.addLast(value);
     }
 
+    public T front() { 
+        return super.get(0);
+    }
+
     public T pop() {
         // pop from the head of the base list
         return super.popHead();

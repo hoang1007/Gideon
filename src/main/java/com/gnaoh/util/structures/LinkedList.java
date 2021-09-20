@@ -99,6 +99,18 @@ public abstract class LinkedList<T> implements Iterable<T> {
         }
     }
 
+    protected T get(int position) {
+        if (position < 0 || position >= size)
+            throw new IndexOutOfBoundsException();
+            
+        Node itr = head;
+        for (int i = 0; i < position; i++) {
+            itr = itr.next;
+        }
+
+        return itr.value;
+    }
+
     protected T remove(int index) {
         if (index < 0 || index >= size)
             throw new IndexOutOfBoundsException();
