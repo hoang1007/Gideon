@@ -2,19 +2,19 @@ package com.gnaoh.command.talk;
 
 import java.util.List;
 
+import com.gnaoh.Bot;
 import com.gnaoh.assets.AnimeGifs;
-import com.gnaoh.command.CommandContext;
 import com.gnaoh.command.cmdinterface.ICommand;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 
 public class HiCommand implements ICommand {
     @Override
-    public void handle(CommandContext context) {
-        String target = context.getArgs().isEmpty() ? 
-            context.getEvent().getAuthor().getAsMention() : String.join(" ", context.getArgs());
+    public void handle(Bot bot, List<String> args) {
+        String target = args.isEmpty() ? 
+            bot.getEvent().getAuthor().getAsMention() : String.join(" ", args);
             
-        context.reply("hello " + target + " ❤️", 
+        bot.reply("hello " + target + " ❤️", 
             new EmbedBuilder().setImage(AnimeGifs.getRandom(AnimeGifs.shy)).build());
     }
 

@@ -2,20 +2,18 @@ package com.gnaoh.command.numerics;
 
 import java.util.List;
 
-import com.gnaoh.Config;
-import com.gnaoh.command.CommandContext;
+import com.gnaoh.Bot;
 import com.gnaoh.command.cmdinterface.ICommand;
+import com.gnaoh.exception.InvalidArgumentException;
 import com.gnaoh.util.numerics.Bignum;
 import com.gnaoh.util.numerics.Calculator;
 
 public class PowerCommand implements ICommand {
     @Override
-    public void handle(CommandContext context) throws Exception{
-        List<String> args = context.getArgs();
-        
+    public void handle(Bot bot, List<String> args) throws Exception{
         Bignum a = Bignum.Parse(args.get(0));
         Long b = Long.parseLong(args.get(1));
-        context.reply(Calculator.power(a, b).toString());
+        bot.reply(Calculator.power(a, b).toString());
     }
 
     @Override
@@ -32,7 +30,7 @@ public class PowerCommand implements ICommand {
     public void checkParameters(List<String> args) throws Exception {
         final int paramCount = 2;
         if (args.size() != paramCount) {
-            throw new Exception(String.format("Correct usage is `%spow <bignum1> <long integer>`", Config.prefix));
+            throw new InvalidArgumentException("Must provide two numbers`");
         }
     }
 }

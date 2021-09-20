@@ -2,17 +2,17 @@ package com.gnaoh.command.talk;
 
 import java.util.List;
 
-import com.gnaoh.command.CommandContext;
+import com.gnaoh.Bot;
 import com.gnaoh.command.cmdinterface.ICommand;
 
 public class HelloCommand implements ICommand {
 
     @Override
-    public void handle(CommandContext context) {
-        String target = context.getArgs().isEmpty() ? 
-            context.getEvent().getAuthor().getAsMention() : String.join(" ", context.getArgs());
+    public void handle(Bot bot, List<String> args) {
+        String target = args.isEmpty() ? 
+            bot.getEvent().getAuthor().getAsMention() : String.join(" ", args);
            
-        context.reply("hi " + target + " ❤️");
+        bot.reply("hi " + target + " ❤️");
     }
 
     @Override

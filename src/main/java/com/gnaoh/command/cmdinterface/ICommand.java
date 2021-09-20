@@ -3,10 +3,10 @@ package com.gnaoh.command.cmdinterface;
 import java.util.Arrays;
 import java.util.List;
 
-import com.gnaoh.command.CommandContext;
+import com.gnaoh.Bot;
 
 public interface ICommand {
-    void handle(CommandContext context) throws Exception;
+    void handle(Bot bot, List<String> args) throws Exception;
 
     String getName();
     String getDescription();
@@ -21,13 +21,13 @@ public interface ICommand {
         return Arrays.asList();
     }
 
-    default void invoke(CommandContext context) {
+    default void invoke(Bot bot, List<String> args) {
         try {
-            checkParameters(context.getArgs());
+            checkParameters(args);
             
-            handle(context);
+            handle(bot, args);
         } catch (Exception e) {
-            context.reply(e.getMessage());
+            bot.reply(e.getMessage());
         }
     }
 }
