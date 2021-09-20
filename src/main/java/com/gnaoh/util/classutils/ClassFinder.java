@@ -2,16 +2,15 @@ package com.gnaoh.util.classutils;
 
 import java.util.Set;
 
-import com.gnaoh.Config;
-
 import org.reflections.Reflections;
 
 public class ClassFinder<T> {
+    final String packageName = "com.gnaoh";
     Reflections reflections;
     Class<T> clazz;
 
     public ClassFinder(Class<T> clazz) {
-        reflections = new Reflections(Config.packageName);
+        reflections = new Reflections(packageName);
         this.clazz = clazz;
     }
 
