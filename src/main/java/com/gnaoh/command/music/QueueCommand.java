@@ -2,23 +2,23 @@ package com.gnaoh.command.music;
 
 import java.util.List;
 
-import com.gnaoh.Config;
-import com.gnaoh.command.CommandContext;
+import com.gnaoh.Bot;
 import com.gnaoh.command.cmdinterface.IMusicCommand;
-import com.gnaoh.util.lavaplayer.PlayerManager;
+import com.gnaoh.exception.InvalidArgumentException;
+
 import com.gnaoh.util.other.Formatter;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 
 public class QueueCommand implements IMusicCommand {
 
     @Override
-    public void handle(CommandContext context) {
+    public void handle(Bot bot, List<String> args) {
         String list = "";
-        for (AudioTrack track : PlayerManager.INSTANCE.getMusicManager(context.getGuild()).scheduler.trackQueue) {
+        for (AudioTrack track : bot.getPlayerManager().getMusicManager(bot.getGuild()).scheduler.trackQueue) {
             list += String.format("`%s - %s`\n", track.getInfo().title, Formatter.formatTime(track.getDuration()));
         } 
 
-        context.reply(list.isEmpty() ? "`No tracks available in queue!`" : list);
+        bot.reply(list.isEmpty() ? "`No tracks available in queue!`" : list);
     }
 
     @Override
@@ -34,6 +34,6 @@ public class QueueCommand implements IMusicCommand {
     @Override
     public void checkParameters(List<String> args) throws Exception {
         if (!args.isEmpty())
-            throw new Exception(String.format("`Correct usage is [%squeue]`", Config.prefix));
+            throw new InvalidArgumentException("`This command should not contain parameters`");
     }
 }

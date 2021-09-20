@@ -2,14 +2,13 @@ package com.gnaoh.command.music;
 
 import java.util.List;
 
-import com.gnaoh.Config;
-import com.gnaoh.command.CommandContext;
+import com.gnaoh.Bot;
 import com.gnaoh.command.cmdinterface.IMusicCommand;
+import com.gnaoh.exception.InvalidArgumentException;
 import com.gnaoh.exception.NoMemberInVoiceChannel;
 import com.gnaoh.exception.NotSameVoiceChannel;
 import com.gnaoh.ienum.MemberType;
 import com.gnaoh.util.lavaplayer.GuildMusicManager;
-import com.gnaoh.util.lavaplayer.PlayerManager;
 import com.gnaoh.util.other.Formatter;
 import com.gnaoh.util.web.UrlUtils;
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
@@ -22,33 +21,33 @@ import net.dv8tion.jda.api.entities.GuildVoiceState;
 
 public class PlayCommand implements IMusicCommand {
     @Override
-    public void handle(CommandContext context) throws Exception {
-        final GuildVoiceState selfVoiceState = context.getVoiceState(MemberType.BOT),
-                memberVoiceState = context.getVoiceState(MemberType.NORMAL);
+    public void handle(Bot bot, List<String> args) throws Exception {
+        final GuildVoiceState selfVoiceState = bot.getVoiceState(MemberType.BOT),
+                memberVoiceState = bot.getVoiceState(MemberType.NORMAL);
 
         if (!selfVoiceState.inVoiceChannel())
-            context.getGuild().getAudioManager().openAudioConnection(memberVoiceState.getChannel());
+            bot.getGuild().getAudioManager().openAudioConnection(memberVoiceState.getChannel());
 
-        play(context, String.join(" ", context.getArgs()));
+        play(bot, String.join(" ", args));
     }
 
-    void play(CommandContext context, String url) {
+    void play(Bot bot, String url) {
         if (!UrlUtils.isUrl(url)) {
             url = "ytsearch:" + url;
         }
 
-        final GuildMusicManager musicManager = PlayerManager.INSTANCE.getMusicManager(context.getGuild());
+        final GuildMusicManager musicManager = bot.getPlayerManager().getMusicManager(bot.getGuild());
 
-        PlayerManager.INSTANCE.getAudioPlayerManager().loadItemOrdered(context.getGuild(), url, new AudioLoadResultHandler() {
+        bot.getPlayerManager().getAudioPlayerManager().loadItemOrdered(bot.getGuild(), url, new AudioLoadResultHandler() {
   
             @Override
             public void loadFailed(FriendlyException arg0) {
-                context.reply("Error while handle the request");
+                bot.reply("Error while handle the request");
             }
 
             @Override
             public void noMatches() {
-                context.reply("I can't find your request");
+                bot.reply("I can't find your request");
             }
 
             @Override
@@ -59,7 +58,7 @@ public class PlayCommand implements IMusicCommand {
                         .setTitle(String.format("Adding to queue: `%s - %s`", track.getInfo().title, Formatter.formatTime(track.getDuration())))
                         .setAuthor(track.getInfo().author).setImage(UrlUtils.getThumbnailUrl(track.getIdentifier()));
 
-                context.reply(embedBuilder.build());
+                bot.reply(embedBuilder.build());
                 musicManager.scheduler.queue(track);
             }
 
@@ -69,7 +68,7 @@ public class PlayCommand implements IMusicCommand {
                         .setTitle(String.format("Adding to queue: `%s - %s`", track.getInfo().title, Formatter.formatTime(track.getDuration())))
                         .setAuthor(track.getInfo().author).setImage(UrlUtils.getThumbnailUrl(track.getIdentifier()));
 
-                context.reply(embedBuilder.build());
+                bot.reply(embedBuilder.build());
                 musicManager.scheduler.queue(track);
             }
         });
@@ -88,14 +87,13 @@ public class PlayCommand implements IMusicCommand {
     @Override
     public void checkParameters(List<String> args) throws Exception {
         if (args.isEmpty())
-            throw new Exception(String.format("Correct usage is `%splay <youtube link> or <name of song>`",
-                    Config.prefix));
+            throw new InvalidArgumentException("Must provide a url or song's name`");
     }
 
     @Override
-    public void checkVoiceChannel(CommandContext context) throws Exception {
-        final GuildVoiceState selfVoiceState = context.getVoiceState(MemberType.BOT);
-        final GuildVoiceState memberVoiceState = context.getVoiceState(MemberType.NORMAL);
+    public void checkVoiceChannel(Bot bot) throws Exception {
+        final GuildVoiceState selfVoiceState = bot.getVoiceState(MemberType.BOT);
+        final GuildVoiceState memberVoiceState = bot.getVoiceState(MemberType.NORMAL);
 
         if (!memberVoiceState.inVoiceChannel())
             throw new NoMemberInVoiceChannel();

@@ -2,16 +2,15 @@ package com.gnaoh.command.music;
 
 import java.util.List;
 
-import com.gnaoh.Config;
-import com.gnaoh.command.CommandContext;
+import com.gnaoh.Bot;
 import com.gnaoh.command.cmdinterface.IMusicCommand;
-import com.gnaoh.util.lavaplayer.PlayerManager;
+
 
 public class StopCommand implements IMusicCommand {
 
     @Override
-    public void handle(CommandContext context) {
-        PlayerManager.INSTANCE.getMusicManager(context.getGuild())
+    public void handle(Bot bot, List<String> args) {
+        bot.getPlayerManager().getMusicManager(bot.getGuild())
             .scheduler.player.stopTrack();
     }
 
@@ -28,6 +27,6 @@ public class StopCommand implements IMusicCommand {
     @Override
     public void checkParameters(List<String> args) throws Exception {
         if (!args.isEmpty())
-            throw new Exception(String.format("`Correct usage is [%sstop]`", Config.prefix));
+            throw new Exception("`This command should not contain parameters`");
     }
 }

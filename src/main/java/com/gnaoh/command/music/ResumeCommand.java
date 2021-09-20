@@ -2,17 +2,16 @@ package com.gnaoh.command.music;
 
 import java.util.List;
 
-import com.gnaoh.Config;
-import com.gnaoh.command.CommandContext;
+import com.gnaoh.Bot;
 import com.gnaoh.command.cmdinterface.IMusicCommand;
-import com.gnaoh.util.lavaplayer.PlayerManager;
+import com.gnaoh.exception.InvalidArgumentException;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 
 public class ResumeCommand implements IMusicCommand {
 
     @Override
-    public void handle(CommandContext context) throws Exception {
-        resumeTrack(PlayerManager.INSTANCE.getMusicManager(context.getGuild()).audioPlayer);
+    public void handle(Bot bot, List<String> args) throws Exception {
+        resumeTrack(bot.getPlayerManager().getMusicManager(bot.getGuild()).audioPlayer);
     }
 
     void resumeTrack(AudioPlayer audioPlayer) throws Exception {
@@ -36,7 +35,7 @@ public class ResumeCommand implements IMusicCommand {
     @Override
     public void checkParameters(List<String> args) throws Exception {
         if (!args.isEmpty())
-            throw new Exception(String.format("`Correct usage is [%sresume]`", Config.prefix));
+            throw new InvalidArgumentException("`This command should not contain parameters`");
     }
     
 }

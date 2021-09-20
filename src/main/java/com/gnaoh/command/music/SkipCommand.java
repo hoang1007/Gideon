@@ -2,26 +2,25 @@ package com.gnaoh.command.music;
 
 import java.util.List;
 
-import com.gnaoh.Config;
-import com.gnaoh.command.CommandContext;
+import com.gnaoh.Bot;
 import com.gnaoh.command.cmdinterface.IMusicCommand;
 import com.gnaoh.ienum.UserType;
 import com.gnaoh.util.lavaplayer.GuildMusicManager;
-import com.gnaoh.util.lavaplayer.PlayerManager;
+
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 
 public class SkipCommand implements IMusicCommand {
 
     @Override
-    public void handle(CommandContext context) {
+    public void handle(Bot bot, List<String> args) {
         try {
-            checkVoiceChannel(context);
-            GuildMusicManager musicManager = PlayerManager.INSTANCE.getMusicManager(context.getGuild());
+            checkVoiceChannel(bot);
+            GuildMusicManager musicManager = bot.getPlayerManager().getMusicManager(bot.getGuild());
             
             skipTrack(musicManager);
-            context.reply("Track is skipped by " + context.getUser(UserType.AUTHOR).getAsMention());
+            bot.reply("Track is skipped by " + bot.getUser(UserType.AUTHOR).getAsMention());
         } catch (Exception e) {
-            context.reply(e.getMessage());
+            bot.reply(e.getMessage());
         }
     }
 
@@ -47,6 +46,6 @@ public class SkipCommand implements IMusicCommand {
     @Override
     public void checkParameters(List<String> args) throws Exception {
         if (!args.isEmpty())
-            throw new Exception(String.format("Correct usage is [%sskip]", Config.prefix));
+            throw new Exception("This command should not contain parameters");
     }
 }
