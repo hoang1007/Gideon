@@ -10,8 +10,6 @@ import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
 import net.dv8tion.jda.api.entities.Guild;
 
 public class PlayerManager {
-    public static final PlayerManager INSTANCE = new PlayerManager();
-
     private final Map<Long, GuildMusicManager> musicManager;
     private final AudioPlayerManager audioPlayerManager;
 
